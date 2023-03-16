@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import { execSync } from "node:child_process";
 import { writeFileSync } from "node:fs";
 
 import { globby } from "globby";
@@ -8,12 +7,6 @@ import { globby } from "globby";
 import packageJson from "../package.json" assert { type: "json" };
 
 const run = async () => {
-  const initialPaths = await globby("./dist/**/*.js");
-
-  initialPaths.forEach((path) => {
-    execSync(`mv ${path} ${path}x`);
-  });
-
   const paths = await globby("./dist/**/*.jsx");
 
   packageJson.exports = Object.fromEntries(
@@ -25,7 +18,9 @@ const run = async () => {
         const withoutDistAndExtension = withoutDist.replace(/\.jsx$/u, "");
 
         return [
-          withoutDistAndExtension.replace("components/ui", "components"),
+          withoutDistAndExtension
+            .replace("components/ui", "components")
+            .replace("./index", "."),
           {
             require: path,
             types: `${withoutExtension}.d.ts`,
@@ -43,6 +38,9 @@ const run = async () => {
       ])
     ),
   };
+
+  packageJson.main = "./dist/index.jsx";
+  packageJson.types = "./dist/index.d.ts";
 
   writeFileSync("./package.json", JSON.stringify(packageJson, null, 2));
 };

@@ -1,6 +1,6 @@
 {
   "name": "@lshay/ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Published version of @shadcn/ui",
   "publishConfig": {
     "access": "public"
@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "./.scripts/build.sh && ./.scripts/update-exports.mjs"
+    "build": "./.scripts/build.sh && ./.scripts/move-files.mjs && ./.scripts/update-exports.mjs"
   },
   "keywords": [
     "@shadcn/ui"
@@ -66,6 +66,11 @@
     "tailwindcss": "^3.2.7"
   },
   "exports": {
+    ".": {
+      "require": "./dist/index.jsx",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.jsx"
+    },
     "./lib/utils": {
       "require": "./dist/lib/utils.jsx",
       "types": "./dist/lib/utils.d.ts",
@@ -229,6 +234,9 @@
   },
   "typesVersions": {
     "*": {
+      ".": [
+        "dist/index.d.ts"
+      ],
       "lib/utils": [
         "dist/lib/utils.d.ts"
       ],
@@ -326,5 +334,7 @@
         "dist/components/ui/use-toast.d.ts"
       ]
     }
-  }
+  },
+  "main": "./dist/index.jsx",
+  "types": "./dist/index.d.ts"
 }
