@@ -1,3 +1,4 @@
+export * from "./index";
 export * from "./lib/utils";
 export * from "./components/ui/accordion";
 export * from "./components/ui/alert-dialog";

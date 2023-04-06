@@ -1,15 +1,15 @@
 {
-  "compilerOptions": {
-    "declaration": true,
-    "esModuleInterop": true,
-    "inlineSourceMap": true,
-    "jsx": "react",
-    "lib": ["es2020", "dom", "dom.iterable"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "outDir": "./dist",
-    "skipLibCheck": true,
-    "target": "es2017"
-  },
-  "include": ["src"]
+	"compilerOptions": {
+		"declaration": true,
+		"esModuleInterop": true,
+		"inlineSourceMap": true,
+		"jsx": "react",
+		"lib": ["es2020", "dom", "dom.iterable"],
+		"module": "esnext",
+		"moduleResolution": "node",
+		"outDir": "./dist",
+		"skipLibCheck": true,
+		"target": "es2017"
+	},
+	"include": ["src"]
 }
