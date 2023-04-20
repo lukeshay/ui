@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
-import { rmSync, writeFileSync } from "node:fs";
+import { rmSync, writeFileSync, mkdirSync, readFileSync } from "node:fs";
 import { resolve, join } from "node:path";
+import { execSync } from "node:child_process";
 
 import { z } from "zod";
-import { mkdirSync, readFileSync } from "fs";
-import { execSync } from "child_process";
 import { globby } from "globby";
 
 const INSTALL_DIR = resolve("src", "components", "ui");
@@ -41,10 +40,17 @@ const main = async () => {
 
 	writeFileSync(join(INSTALL_DIR, "metadata.json"), JSON.stringify(components, undefined, 4));
 
+	const currentReadme = readFileSync("./README.template.md").toString("utf-8");
+
 	/**
 	 * @type {string[]}
 	 */
 	const dependencies = [];
+
+	/**
+	 * @type {string[]}
+	 */
+	const readme = [currentReadme, "## Components"];
 
 	components.forEach((component) => {
 		dependencies.push(...(component.dependencies ?? []));
@@ -52,7 +58,20 @@ const main = async () => {
 		component.files.forEach((file) => {
 			writeFileSync(join(INSTALL_DIR, file.name), file.content);
 		});
+
+		readme.push(`### ${component.name}`);
+		readme.push("");
+		readme.push("```tsx");
+		readme.push(
+			`import { ${component.name} } from "@lshay/ui/components/${component.files[0].name.replace(".tsx", "")}";`,
+		);
+		readme.push("```");
 	});
+
+	readme.push("## Updated At");
+	readme.push(new Date().toISOString());
+
+	writeFileSync("./README.md", readme.join("\n"));
 
 	execSync(`pnpm i ${dependencies.join(" ")}`, { stdio: "pipe" });
 
@@ -64,7 +83,12 @@ const main = async () => {
 				const contents = readFileSync(path).toString("utf-8");
 				const newContents = contents.replace(/@\/components\/ui/gu, ".").replace(/@\/lib\/utils/gu, "../../lib/utils");
 
-				writeFileSync(path, newContents);
+				writeFileSync(
+					path,
+					newContents.includes('import * as React from "react"')
+						? newContents
+						: `import * as React from "react";\n${newContents}`,
+				);
 			}
 
 			return `export * from "${path.replace(/(src\/|\.tsx?)/gu, "")}";`;
