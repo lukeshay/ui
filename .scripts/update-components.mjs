@@ -6,7 +6,7 @@ import { execSync } from "node:child_process";
 
 import { z } from "zod";
 import { globby } from "globby";
-import {pascalCase} from "change-case"
+import { pascalCase } from "change-case";
 
 const INSTALL_DIR = resolve("src", "components", "ui");
 const COMPONENTS_ENDPOINT = "https://ui.shadcn.com/api/components";
@@ -60,14 +60,12 @@ const main = async () => {
 			writeFileSync(join(INSTALL_DIR, file.name), file.content);
 		});
 
-		const name = pascalCase(component.name)
+		const name = pascalCase(component.name);
 
 		readme.push(`### ${name}`);
 		readme.push("");
 		readme.push("```tsx");
-		readme.push(
-			`import { ${name} } from "@lshay/ui/components/${component.files[0].name.replace(".tsx", "")}";`,
-		);
+		readme.push(`import { ${name} } from "@lshay/ui/components/${component.files[0].name.replace(".tsx", "")}";`);
 		readme.push("```");
 	});
 
