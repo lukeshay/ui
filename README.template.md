@@ -77,7 +77,7 @@ Follow steps [linked here](https://ui.shadcn.com/docs/installation#configure-sty
 ## Usage
 
 ```tsx
-import { Button } from "@lshay/ui/components/button";
+import { Button } from "@lshay/ui/components/button"; // You can also import from "@lshay/ui"
 
 export const ClickMeButton = () => <Button>{"Click Me"}</Button>;
 ```
