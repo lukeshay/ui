@@ -1,6 +1,6 @@
 {
   "name": "@lshay/ui",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Published version of @shadcn/ui",
   "publishConfig": {
     "access": "public"
@@ -9,6 +9,7 @@
     "dist"
   ],
   "scripts": {
+    "prepack": "pnpm build",
     "build": "./.scripts/build.sh",
     "format": "prettier --write --check --ignore-path .gitignore ."
   },
