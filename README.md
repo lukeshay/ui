@@ -77,7 +77,7 @@ Follow steps [linked here](https://ui.shadcn.com/docs/installation#configure-sty
 ## Usage
 
 ```tsx
-import { Button } from "@lshay/ui/components/button";
+import { Button } from "@lshay/ui/components/button"; // You can also import from "@lshay/ui"
 
 export const ClickMeButton = () => <Button>{"Click Me"}</Button>;
 ```
@@ -264,6 +264,12 @@ import { Slider } from "@lshay/ui/components/slider";
 import { Switch } from "@lshay/ui/components/switch";
 ```
 
+### Table
+
+```tsx
+import { Table } from "@lshay/ui/components/table";
+```
+
 ### Tabs
 
 ```tsx
@@ -296,4 +302,4 @@ import { Tooltip } from "@lshay/ui/components/tooltip";
 
 ## Updated At
 
-2023-04-22T16:40:42.324Z
+2023-05-10T14:35:26.951Z
