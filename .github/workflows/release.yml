@@ -30,7 +30,7 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-pnpm-store-
             - run: pnpm install
-            - run: pnpm run build && ./.scripts/bump-version.sh && pnpm publish --no-git-checks
+            - run: pnpm run build && ./.scripts/bump-version.mjs && pnpm publish --no-git-checks
               env:
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
             - uses: EndBug/add-and-commit@v9
