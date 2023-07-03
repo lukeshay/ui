@@ -1,6 +1,6 @@
 {
 	"name": "@lshay/ui",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"description": "Published version of @shadcn/ui",
 	"publishConfig": {
 		"access": "public"
