@@ -8,6 +8,8 @@ import { z } from "zod";
 import { globby } from "globby";
 import { pascalCase } from "change-case";
 
+import packageJson from "../package.json" assert { type: "json" };
+
 const INSTALL_DIR = resolve("src", "components", "ui");
 const COMPONENTS_ENDPOINT = "https://ui.shadcn.com/api/components";
 
@@ -82,8 +84,11 @@ const main = async () => {
 	// Write the README
 	writeFileSync("./README.md", readme.join("\n"));
 
+	console.log({ dependencies });
+
 	// Install the dependencies
-	execSync(`pnpm i ${dependencies.join(" ")}`, { stdio: "pipe" });
+	execSync(`pnpm remove ${dependencies.filter((dep) => packageJson.dependencies[dep]).join(" ")}`, { stdio: "pipe" });
+	execSync(`pnpm add ${dependencies.join(" ")}`, { stdio: "pipe" });
 
 	// Rewrite imports to not use tsconfig.paths
 	const initialPaths = await globby("./src/**/*.{tsx,ts}");

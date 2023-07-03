@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 import { writeFileSync } from "node:fs";
+import { execSync } from "node:child_process";
 
 import { globby } from "globby";
 
 import packageJson from "../package.json" assert { type: "json" };
-import { execSync } from "node:child_process";
 
 const run = async () => {
 	const initialPaths = await globby("./dist/**/*.js");

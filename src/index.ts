@@ -1,4 +1,5 @@
 export * from "./index";
+export * from "./lib/utils";
 export * from "./components/ui/accordion";
 export * from "./components/ui/alert-dialog";
 export * from "./components/ui/alert";
@@ -33,7 +34,7 @@ export * from "./components/ui/table";
 export * from "./components/ui/tabs";
 export * from "./components/ui/textarea";
 export * from "./components/ui/toast";
+export * from "./components/ui/toaster";
 export * from "./components/ui/toggle";
 export * from "./components/ui/tooltip";
 export * from "./components/ui/use-toast";
-export * from "./lib/utils";
