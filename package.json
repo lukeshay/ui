@@ -11,7 +11,7 @@
 	"scripts": {
 		"prepack": "pnpm build",
 		"build": "./.scripts/build.sh",
-		"format": "prettier --write --check --ignore-path .gitignore ."
+		"format": "prettier --write --ignore-path .gitignore ."
 	},
 	"keywords": [
 		"@shadcn/ui"
