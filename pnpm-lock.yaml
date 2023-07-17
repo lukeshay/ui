@@ -451,10 +451,10 @@ packages:
             }
         dev: false
 
-    /@floating-ui/dom@1.4.4:
+    /@floating-ui/dom@1.4.5:
         resolution:
             {
-                integrity: sha512-21hhDEPOiWkGp0Ys4Wi6Neriah7HweToKra626CIK712B5m9qkdz54OP9gVldUg+URnBTpv/j/bi/skmGdstXQ==,
+                integrity: sha512-96KnRWkRnuBSSFbj0sFGwwOUd8EkiecINVl0O9wiZlZ64EkpyAOG3Xc2vKKNJmru0Z7RqWNymA+6b8OZqjgyyw==,
             }
         dependencies:
             "@floating-ui/core": 1.3.1
@@ -469,7 +469,7 @@ packages:
             react: ">=16.8.0"
             react-dom: ">=16.8.0"
         dependencies:
-            "@floating-ui/dom": 1.4.4
+            "@floating-ui/dom": 1.4.5
             react: 18.2.0
             react-dom: 18.2.0(react@18.2.0)
         dev: false
