@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 
-import { rmSync, writeFileSync, mkdirSync, readFileSync } from "node:fs";
-import { resolve, join } from "node:path";
+import { writeFile, readFile, rm } from "node:fs";
+import { resolve } from "node:path";
 import { exec } from "node:child_process";
+import { promisify } from "node:util";
 
 import { z } from "zod";
 import { globby } from "globby";
-import { promisify } from "node:util";
 
 const execAsync = promisify(exec);
+const writeFileAsync = promisify(writeFile);
+const readFileAsync = promisify(readFile);
+const rmAsync = promisify(rm);
 
 const INSTALL_DIR = resolve("src", "components", "ui");
 const COMPONENTS_ENDPOINT = "https://ui.shadcn.com/api/components";
@@ -29,7 +32,7 @@ const COMPONENTS_SCHEMA = z.array(COMPONENT_SCHEMA);
 
 const main = async () => {
 	// Remove the old components
-	rmSync(INSTALL_DIR, {
+	await rmAsync(INSTALL_DIR, {
 		force: true,
 		recursive: true,
 	});
@@ -39,7 +42,7 @@ const main = async () => {
 	const resultJson = await response.json();
 	const components = COMPONENTS_SCHEMA.parse(resultJson);
 
-	const currentReadme = readFileSync("./README.template.md").toString("utf-8");
+	const currentReadme = (await readFileAsync("./README.template.md")).toString("utf-8");
 
 	await execAsync(
 		`npx shadcn-ui@latest add --yes --overwrite --path ./src/components ${components.map((c) => c.name).join(" ")}`,
@@ -51,30 +54,32 @@ const main = async () => {
 	const readme = [currentReadme, "## Components", "## Updated At", new Date().toISOString()];
 
 	// Write the README
-	writeFileSync("./README.md", readme.join("\n"));
+	void writeFileAsync("./README.md", readme.join("\n"));
 
 	const initialPaths = await globby("./src/**/*.{tsx,ts}");
 
-	const indexFile = initialPaths
-		.map((path) => {
-			if (path.includes("components/ui")) {
-				const contents = readFileSync(path).toString("utf-8");
+	const indexFile = (
+		await Promise.all(
+			initialPaths.map(async (path) => {
+				if (path.includes("components/ui")) {
+					const contents = (await readFileAsync(path)).toString("utf-8");
 
-				// BUG: Add the React import if it's missing. This is a bug in ui.shadcn.com.
-				writeFileSync(
-					path,
-					contents.includes('import * as React from "react"')
-						? contents
-						: `import * as React from "react";\n${contents}`,
-				);
-			}
+					// BUG: Add the React import if it's missing. This is a bug in ui.shadcn.com.
+					await writeFileAsync(
+						path,
+						contents.includes('import * as React from "react"')
+							? contents
+							: `import * as React from "react";\n${contents}`,
+					);
+				}
 
-			return `export * from "${path.replace(/(src\/|\.tsx?)/gu, "")}";`;
-		})
-		.join("\n");
+				return `export * from "${path.replace(/(src\/|\.tsx?)/gu, "")}";`;
+			}),
+		)
+	).join("\n");
 
 	// Write the index file
-	writeFileSync("./src/index.ts", indexFile);
+	await writeFileAsync("./src/index.ts", indexFile);
 };
 
 void main();

@@ -1,448 +1,409 @@
 {
-	"name": "@lshay/ui",
-	"version": "0.0.11",
-	"description": "Published version of @shadcn/ui",
-	"publishConfig": {
-		"access": "public"
-	},
-	"files": [
-		"dist"
-	],
-	"scripts": {
-		"prepack": "pnpm build",
-		"build": "./.scripts/build.sh",
-		"format": "prettier --write --ignore-path .gitignore ."
-	},
-	"keywords": [
-		"@shadcn/ui"
-	],
-	"author": "Luke Shay <https://github.com/lukeshay/>",
-	"license": "MIT",
-	"prettier": "@lshay/prettier-config",
-	"devDependencies": {
-		"@lshay/prettier-config": "0.5.5",
-		"@tsconfig/node16": "1.0.4",
-		"@types/node": "18.15.12",
-		"@types/react": "18.2.6",
-		"@types/react-dom": "18.2.4",
-		"change-case": "4.1.2",
-		"globby": "13.1.4",
-		"lucide-react": "0.220.0",
-		"prettier": "2.8.8",
-		"react": "18.2.0",
-		"react-dom": "18.2.0",
-		"semver": "7.5.1",
-		"tailwindcss": "3.3.2",
-		"tsup": "6.7.0",
-		"typescript": "5.0.4",
-		"zod": "3.21.4"
-	},
-	"peerDependencies": {
-		"react": "^18.0.0",
-		"react-dom": "^18.0.0",
-		"tailwindcss": "^3.0.0"
-	},
-	"exports": {
-		"./index": {
-			"require": "./dist/cjs/index.js",
-			"types": "./dist/types/index.d.ts",
-			"default": "./dist/cjs/index.js",
-			"module": "./dist/esm/index.mjs"
-		},
-		"./lib/utils": {
-			"require": "./dist/cjs/lib/utils.js",
-			"types": "./dist/types/lib/utils.d.ts",
-			"default": "./dist/cjs/lib/utils.js",
-			"module": "./dist/esm/lib/utils.mjs"
-		},
-		"./components/accordion": {
-			"require": "./dist/cjs/components/ui/accordion.js",
-			"types": "./dist/types/components/ui/accordion.d.ts",
-			"default": "./dist/cjs/components/ui/accordion.js",
-			"module": "./dist/esm/components/ui/accordion.mjs"
-		},
-		"./components/alert-dialog": {
-			"require": "./dist/cjs/components/ui/alert-dialog.js",
-			"types": "./dist/types/components/ui/alert-dialog.d.ts",
-			"default": "./dist/cjs/components/ui/alert-dialog.js",
-			"module": "./dist/esm/components/ui/alert-dialog.mjs"
-		},
-		"./components/alert": {
-			"require": "./dist/cjs/components/ui/alert.js",
-			"types": "./dist/types/components/ui/alert.d.ts",
-			"default": "./dist/cjs/components/ui/alert.js",
-			"module": "./dist/esm/components/ui/alert.mjs"
-		},
-		"./components/aspect-ratio": {
-			"require": "./dist/cjs/components/ui/aspect-ratio.js",
-			"types": "./dist/types/components/ui/aspect-ratio.d.ts",
-			"default": "./dist/cjs/components/ui/aspect-ratio.js",
-			"module": "./dist/esm/components/ui/aspect-ratio.mjs"
-		},
-		"./components/avatar": {
-			"require": "./dist/cjs/components/ui/avatar.js",
-			"types": "./dist/types/components/ui/avatar.d.ts",
-			"default": "./dist/cjs/components/ui/avatar.js",
-			"module": "./dist/esm/components/ui/avatar.mjs"
-		},
-		"./components/badge": {
-			"require": "./dist/cjs/components/ui/badge.js",
-			"types": "./dist/types/components/ui/badge.d.ts",
-			"default": "./dist/cjs/components/ui/badge.js",
-			"module": "./dist/esm/components/ui/badge.mjs"
-		},
-		"./components/button": {
-			"require": "./dist/cjs/components/ui/button.js",
-			"types": "./dist/types/components/ui/button.d.ts",
-			"default": "./dist/cjs/components/ui/button.js",
-			"module": "./dist/esm/components/ui/button.mjs"
-		},
-		"./components/calendar": {
-			"require": "./dist/cjs/components/ui/calendar.js",
-			"types": "./dist/types/components/ui/calendar.d.ts",
-			"default": "./dist/cjs/components/ui/calendar.js",
-			"module": "./dist/esm/components/ui/calendar.mjs"
-		},
-		"./components/card": {
-			"require": "./dist/cjs/components/ui/card.js",
-			"types": "./dist/types/components/ui/card.d.ts",
-			"default": "./dist/cjs/components/ui/card.js",
-			"module": "./dist/esm/components/ui/card.mjs"
-		},
-		"./components/checkbox": {
-			"require": "./dist/cjs/components/ui/checkbox.js",
-			"types": "./dist/types/components/ui/checkbox.d.ts",
-			"default": "./dist/cjs/components/ui/checkbox.js",
-			"module": "./dist/esm/components/ui/checkbox.mjs"
-		},
-		"./components/collapsible": {
-			"require": "./dist/cjs/components/ui/collapsible.js",
-			"types": "./dist/types/components/ui/collapsible.d.ts",
-			"default": "./dist/cjs/components/ui/collapsible.js",
-			"module": "./dist/esm/components/ui/collapsible.mjs"
-		},
-		"./components/command": {
-			"require": "./dist/cjs/components/ui/command.js",
-			"types": "./dist/types/components/ui/command.d.ts",
-			"default": "./dist/cjs/components/ui/command.js",
-			"module": "./dist/esm/components/ui/command.mjs"
-		},
-		"./components/context-menu": {
-			"require": "./dist/cjs/components/ui/context-menu.js",
-			"types": "./dist/types/components/ui/context-menu.d.ts",
-			"default": "./dist/cjs/components/ui/context-menu.js",
-			"module": "./dist/esm/components/ui/context-menu.mjs"
-		},
-		"./components/dialog": {
-			"require": "./dist/cjs/components/ui/dialog.js",
-			"types": "./dist/types/components/ui/dialog.d.ts",
-			"default": "./dist/cjs/components/ui/dialog.js",
-			"module": "./dist/esm/components/ui/dialog.mjs"
-		},
-		"./components/dropdown-menu": {
-			"require": "./dist/cjs/components/ui/dropdown-menu.js",
-			"types": "./dist/types/components/ui/dropdown-menu.d.ts",
-			"default": "./dist/cjs/components/ui/dropdown-menu.js",
-			"module": "./dist/esm/components/ui/dropdown-menu.mjs"
-		},
-		"./components/hover-card": {
-			"require": "./dist/cjs/components/ui/hover-card.js",
-			"types": "./dist/types/components/ui/hover-card.d.ts",
-			"default": "./dist/cjs/components/ui/hover-card.js",
-			"module": "./dist/esm/components/ui/hover-card.mjs"
-		},
-		"./components/input": {
-			"require": "./dist/cjs/components/ui/input.js",
-			"types": "./dist/types/components/ui/input.d.ts",
-			"default": "./dist/cjs/components/ui/input.js",
-			"module": "./dist/esm/components/ui/input.mjs"
-		},
-		"./components/label": {
-			"require": "./dist/cjs/components/ui/label.js",
-			"types": "./dist/types/components/ui/label.d.ts",
-			"default": "./dist/cjs/components/ui/label.js",
-			"module": "./dist/esm/components/ui/label.mjs"
-		},
-		"./components/menubar": {
-			"require": "./dist/cjs/components/ui/menubar.js",
-			"types": "./dist/types/components/ui/menubar.d.ts",
-			"default": "./dist/cjs/components/ui/menubar.js",
-			"module": "./dist/esm/components/ui/menubar.mjs"
-		},
-		"./components/navigation-menu": {
-			"require": "./dist/cjs/components/ui/navigation-menu.js",
-			"types": "./dist/types/components/ui/navigation-menu.d.ts",
-			"default": "./dist/cjs/components/ui/navigation-menu.js",
-			"module": "./dist/esm/components/ui/navigation-menu.mjs"
-		},
-		"./components/popover": {
-			"require": "./dist/cjs/components/ui/popover.js",
-			"types": "./dist/types/components/ui/popover.d.ts",
-			"default": "./dist/cjs/components/ui/popover.js",
-			"module": "./dist/esm/components/ui/popover.mjs"
-		},
-		"./components/progress": {
-			"require": "./dist/cjs/components/ui/progress.js",
-			"types": "./dist/types/components/ui/progress.d.ts",
-			"default": "./dist/cjs/components/ui/progress.js",
-			"module": "./dist/esm/components/ui/progress.mjs"
-		},
-		"./components/radio-group": {
-			"require": "./dist/cjs/components/ui/radio-group.js",
-			"types": "./dist/types/components/ui/radio-group.d.ts",
-			"default": "./dist/cjs/components/ui/radio-group.js",
-			"module": "./dist/esm/components/ui/radio-group.mjs"
-		},
-		"./components/scroll-area": {
-			"require": "./dist/cjs/components/ui/scroll-area.js",
-			"types": "./dist/types/components/ui/scroll-area.d.ts",
-			"default": "./dist/cjs/components/ui/scroll-area.js",
-			"module": "./dist/esm/components/ui/scroll-area.mjs"
-		},
-		"./components/select": {
-			"require": "./dist/cjs/components/ui/select.js",
-			"types": "./dist/types/components/ui/select.d.ts",
-			"default": "./dist/cjs/components/ui/select.js",
-			"module": "./dist/esm/components/ui/select.mjs"
-		},
-		"./components/separator": {
-			"require": "./dist/cjs/components/ui/separator.js",
-			"types": "./dist/types/components/ui/separator.d.ts",
-			"default": "./dist/cjs/components/ui/separator.js",
-			"module": "./dist/esm/components/ui/separator.mjs"
-		},
-		"./components/sheet": {
-			"require": "./dist/cjs/components/ui/sheet.js",
-			"types": "./dist/types/components/ui/sheet.d.ts",
-			"default": "./dist/cjs/components/ui/sheet.js",
-			"module": "./dist/esm/components/ui/sheet.mjs"
-		},
-		"./components/skeleton": {
-			"require": "./dist/cjs/components/ui/skeleton.js",
-			"types": "./dist/types/components/ui/skeleton.d.ts",
-			"default": "./dist/cjs/components/ui/skeleton.js",
-			"module": "./dist/esm/components/ui/skeleton.mjs"
-		},
-		"./components/slider": {
-			"require": "./dist/cjs/components/ui/slider.js",
-			"types": "./dist/types/components/ui/slider.d.ts",
-			"default": "./dist/cjs/components/ui/slider.js",
-			"module": "./dist/esm/components/ui/slider.mjs"
-		},
-		"./components/switch": {
-			"require": "./dist/cjs/components/ui/switch.js",
-			"types": "./dist/types/components/ui/switch.d.ts",
-			"default": "./dist/cjs/components/ui/switch.js",
-			"module": "./dist/esm/components/ui/switch.mjs"
-		},
-		"./components/table": {
-			"require": "./dist/cjs/components/ui/table.js",
-			"types": "./dist/types/components/ui/table.d.ts",
-			"default": "./dist/cjs/components/ui/table.js",
-			"module": "./dist/esm/components/ui/table.mjs"
-		},
-		"./components/tabs": {
-			"require": "./dist/cjs/components/ui/tabs.js",
-			"types": "./dist/types/components/ui/tabs.d.ts",
-			"default": "./dist/cjs/components/ui/tabs.js",
-			"module": "./dist/esm/components/ui/tabs.mjs"
-		},
-		"./components/textarea": {
-			"require": "./dist/cjs/components/ui/textarea.js",
-			"types": "./dist/types/components/ui/textarea.d.ts",
-			"default": "./dist/cjs/components/ui/textarea.js",
-			"module": "./dist/esm/components/ui/textarea.mjs"
-		},
-		"./components/toast": {
-			"require": "./dist/cjs/components/ui/toast.js",
-			"types": "./dist/types/components/ui/toast.d.ts",
-			"default": "./dist/cjs/components/ui/toast.js",
-			"module": "./dist/esm/components/ui/toast.mjs"
-		},
-		"./components/toaster": {
-			"require": "./dist/cjs/components/ui/toaster.js",
-			"types": "./dist/types/components/ui/toaster.d.ts",
-			"default": "./dist/cjs/components/ui/toaster.js",
-			"module": "./dist/esm/components/ui/toaster.mjs"
-		},
-		"./components/toggle": {
-			"require": "./dist/cjs/components/ui/toggle.js",
-			"types": "./dist/types/components/ui/toggle.d.ts",
-			"default": "./dist/cjs/components/ui/toggle.js",
-			"module": "./dist/esm/components/ui/toggle.mjs"
-		},
-		"./components/tooltip": {
-			"require": "./dist/cjs/components/ui/tooltip.js",
-			"types": "./dist/types/components/ui/tooltip.d.ts",
-			"default": "./dist/cjs/components/ui/tooltip.js",
-			"module": "./dist/esm/components/ui/tooltip.mjs"
-		},
-		"./components/use-toast": {
-			"require": "./dist/cjs/components/ui/use-toast.js",
-			"types": "./dist/types/components/ui/use-toast.d.ts",
-			"default": "./dist/cjs/components/ui/use-toast.js",
-			"module": "./dist/esm/components/ui/use-toast.mjs"
-		}
-	},
-	"typesVersions": {
-		"*": {
-			"index": [
-				"dist/types/index.d.ts"
-			],
-			"lib/utils": [
-				"dist/types/lib/utils.d.ts"
-			],
-			"components/accordion": [
-				"dist/types/components/ui/accordion.d.ts"
-			],
-			"components/alert-dialog": [
-				"dist/types/components/ui/alert-dialog.d.ts"
-			],
-			"components/alert": [
-				"dist/types/components/ui/alert.d.ts"
-			],
-			"components/aspect-ratio": [
-				"dist/types/components/ui/aspect-ratio.d.ts"
-			],
-			"components/avatar": [
-				"dist/types/components/ui/avatar.d.ts"
-			],
-			"components/badge": [
-				"dist/types/components/ui/badge.d.ts"
-			],
-			"components/button": [
-				"dist/types/components/ui/button.d.ts"
-			],
-			"components/calendar": [
-				"dist/types/components/ui/calendar.d.ts"
-			],
-			"components/card": [
-				"dist/types/components/ui/card.d.ts"
-			],
-			"components/checkbox": [
-				"dist/types/components/ui/checkbox.d.ts"
-			],
-			"components/collapsible": [
-				"dist/types/components/ui/collapsible.d.ts"
-			],
-			"components/command": [
-				"dist/types/components/ui/command.d.ts"
-			],
-			"components/context-menu": [
-				"dist/types/components/ui/context-menu.d.ts"
-			],
-			"components/dialog": [
-				"dist/types/components/ui/dialog.d.ts"
-			],
-			"components/dropdown-menu": [
-				"dist/types/components/ui/dropdown-menu.d.ts"
-			],
-			"components/hover-card": [
-				"dist/types/components/ui/hover-card.d.ts"
-			],
-			"components/input": [
-				"dist/types/components/ui/input.d.ts"
-			],
-			"components/label": [
-				"dist/types/components/ui/label.d.ts"
-			],
-			"components/menubar": [
-				"dist/types/components/ui/menubar.d.ts"
-			],
-			"components/navigation-menu": [
-				"dist/types/components/ui/navigation-menu.d.ts"
-			],
-			"components/popover": [
-				"dist/types/components/ui/popover.d.ts"
-			],
-			"components/progress": [
-				"dist/types/components/ui/progress.d.ts"
-			],
-			"components/radio-group": [
-				"dist/types/components/ui/radio-group.d.ts"
-			],
-			"components/scroll-area": [
-				"dist/types/components/ui/scroll-area.d.ts"
-			],
-			"components/select": [
-				"dist/types/components/ui/select.d.ts"
-			],
-			"components/separator": [
-				"dist/types/components/ui/separator.d.ts"
-			],
-			"components/sheet": [
-				"dist/types/components/ui/sheet.d.ts"
-			],
-			"components/skeleton": [
-				"dist/types/components/ui/skeleton.d.ts"
-			],
-			"components/slider": [
-				"dist/types/components/ui/slider.d.ts"
-			],
-			"components/switch": [
-				"dist/types/components/ui/switch.d.ts"
-			],
-			"components/table": [
-				"dist/types/components/ui/table.d.ts"
-			],
-			"components/tabs": [
-				"dist/types/components/ui/tabs.d.ts"
-			],
-			"components/textarea": [
-				"dist/types/components/ui/textarea.d.ts"
-			],
-			"components/toast": [
-				"dist/types/components/ui/toast.d.ts"
-			],
-			"components/toaster": [
-				"dist/types/components/ui/toaster.d.ts"
-			],
-			"components/toggle": [
-				"dist/types/components/ui/toggle.d.ts"
-			],
-			"components/tooltip": [
-				"dist/types/components/ui/tooltip.d.ts"
-			],
-			"components/use-toast": [
-				"dist/types/components/ui/use-toast.d.ts"
-			]
-		}
-	},
-	"main": "./dist/cjs/index.jsx",
-	"types": "./dist/types/index.d.ts",
-	"dependencies": {
-		"@radix-ui/react-accordion": "^1.1.2",
-		"@radix-ui/react-alert-dialog": "^1.0.4",
-		"@radix-ui/react-aspect-ratio": "^1.0.3",
-		"@radix-ui/react-avatar": "^1.0.3",
-		"@radix-ui/react-checkbox": "^1.0.4",
-		"@radix-ui/react-collapsible": "^1.0.3",
-		"@radix-ui/react-context-menu": "^2.1.4",
-		"@radix-ui/react-dialog": "^1.0.4",
-		"@radix-ui/react-dropdown-menu": "^2.0.5",
-		"@radix-ui/react-hover-card": "^1.0.6",
-		"@radix-ui/react-label": "^2.0.2",
-		"@radix-ui/react-menubar": "^1.0.3",
-		"@radix-ui/react-navigation-menu": "^1.1.3",
-		"@radix-ui/react-popover": "^1.0.6",
-		"@radix-ui/react-progress": "^1.0.3",
-		"@radix-ui/react-radio-group": "^1.1.3",
-		"@radix-ui/react-scroll-area": "^1.0.4",
-		"@radix-ui/react-select": "^1.2.2",
-		"@radix-ui/react-separator": "^1.0.3",
-		"@radix-ui/react-slider": "^1.1.2",
-		"@radix-ui/react-slot": "^1.0.2",
-		"@radix-ui/react-switch": "^1.0.3",
-		"@radix-ui/react-tabs": "^1.0.4",
-		"@radix-ui/react-toast": "^1.1.4",
-		"@radix-ui/react-toggle": "^1.0.3",
-		"@radix-ui/react-tooltip": "^1.0.6",
-		"class-variance-authority": "^0.7.0",
-		"clsx": "^2.0.0",
-		"cmdk": "^0.2.0",
-		"date-fns": "^2.30.0",
-		"react-day-picker": "^8.8.0",
-		"tailwind-merge": "^1.14.0"
-	},
-	"module": "./dist/esm/index.mjs"
+  "name": "@lshay/ui",
+  "version": "0.0.11",
+  "description": "Published version of @shadcn/ui",
+	"type": "commonjs",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepack": "pnpm build",
+    "build": "./.scripts/build.sh",
+    "format": "prettier --write --ignore-path .gitignore ."
+  },
+  "keywords": [
+    "@shadcn/ui"
+  ],
+  "author": "Luke Shay <https://github.com/lukeshay/>",
+  "license": "MIT",
+  "prettier": "@lshay/prettier-config",
+  "devDependencies": {
+    "@lshay/prettier-config": "0.5.6",
+    "@tsconfig/node16": "16.1.0",
+    "@types/node": "16.11.7",
+    "@types/react": "18.2.16",
+    "@types/react-dom": "18.2.7",
+    "change-case": "4.1.2",
+    "globby": "13.2.2",
+    "lucide-react": "0.263.1",
+    "prettier": "3.0.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "semver": "7.5.4",
+    "tailwindcss": "3.3.3",
+    "tsup": "7.1.0",
+    "typescript": "5.1.6",
+    "zod": "3.21.4"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "tailwindcss": "^3.0.0"
+  },
+  "exports": {
+    ".": {
+      "default": "./dist/cjs/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./lib/utils": {
+      "default": "./dist/cjs/lib/utils.js",
+      "require": "./dist/cjs/lib/utils.js",
+      "types": "./dist/types/lib/utils.d.ts"
+    },
+    "./components/accordion": {
+      "default": "./dist/cjs/components/ui/accordion.js",
+      "require": "./dist/cjs/components/ui/accordion.js",
+      "types": "./dist/types/components/ui/accordion.d.ts"
+    },
+    "./components/alert-dialog": {
+      "default": "./dist/cjs/components/ui/alert-dialog.js",
+      "require": "./dist/cjs/components/ui/alert-dialog.js",
+      "types": "./dist/types/components/ui/alert-dialog.d.ts"
+    },
+    "./components/alert": {
+      "default": "./dist/cjs/components/ui/alert.js",
+      "require": "./dist/cjs/components/ui/alert.js",
+      "types": "./dist/types/components/ui/alert.d.ts"
+    },
+    "./components/aspect-ratio": {
+      "default": "./dist/cjs/components/ui/aspect-ratio.js",
+      "require": "./dist/cjs/components/ui/aspect-ratio.js",
+      "types": "./dist/types/components/ui/aspect-ratio.d.ts"
+    },
+    "./components/avatar": {
+      "default": "./dist/cjs/components/ui/avatar.js",
+      "require": "./dist/cjs/components/ui/avatar.js",
+      "types": "./dist/types/components/ui/avatar.d.ts"
+    },
+    "./components/badge": {
+      "default": "./dist/cjs/components/ui/badge.js",
+      "require": "./dist/cjs/components/ui/badge.js",
+      "types": "./dist/types/components/ui/badge.d.ts"
+    },
+    "./components/button": {
+      "default": "./dist/cjs/components/ui/button.js",
+      "require": "./dist/cjs/components/ui/button.js",
+      "types": "./dist/types/components/ui/button.d.ts"
+    },
+    "./components/calendar": {
+      "default": "./dist/cjs/components/ui/calendar.js",
+      "require": "./dist/cjs/components/ui/calendar.js",
+      "types": "./dist/types/components/ui/calendar.d.ts"
+    },
+    "./components/card": {
+      "default": "./dist/cjs/components/ui/card.js",
+      "require": "./dist/cjs/components/ui/card.js",
+      "types": "./dist/types/components/ui/card.d.ts"
+    },
+    "./components/checkbox": {
+      "default": "./dist/cjs/components/ui/checkbox.js",
+      "require": "./dist/cjs/components/ui/checkbox.js",
+      "types": "./dist/types/components/ui/checkbox.d.ts"
+    },
+    "./components/collapsible": {
+      "default": "./dist/cjs/components/ui/collapsible.js",
+      "require": "./dist/cjs/components/ui/collapsible.js",
+      "types": "./dist/types/components/ui/collapsible.d.ts"
+    },
+    "./components/command": {
+      "default": "./dist/cjs/components/ui/command.js",
+      "require": "./dist/cjs/components/ui/command.js",
+      "types": "./dist/types/components/ui/command.d.ts"
+    },
+    "./components/context-menu": {
+      "default": "./dist/cjs/components/ui/context-menu.js",
+      "require": "./dist/cjs/components/ui/context-menu.js",
+      "types": "./dist/types/components/ui/context-menu.d.ts"
+    },
+    "./components/dialog": {
+      "default": "./dist/cjs/components/ui/dialog.js",
+      "require": "./dist/cjs/components/ui/dialog.js",
+      "types": "./dist/types/components/ui/dialog.d.ts"
+    },
+    "./components/dropdown-menu": {
+      "default": "./dist/cjs/components/ui/dropdown-menu.js",
+      "require": "./dist/cjs/components/ui/dropdown-menu.js",
+      "types": "./dist/types/components/ui/dropdown-menu.d.ts"
+    },
+    "./components/hover-card": {
+      "default": "./dist/cjs/components/ui/hover-card.js",
+      "require": "./dist/cjs/components/ui/hover-card.js",
+      "types": "./dist/types/components/ui/hover-card.d.ts"
+    },
+    "./components/input": {
+      "default": "./dist/cjs/components/ui/input.js",
+      "require": "./dist/cjs/components/ui/input.js",
+      "types": "./dist/types/components/ui/input.d.ts"
+    },
+    "./components/label": {
+      "default": "./dist/cjs/components/ui/label.js",
+      "require": "./dist/cjs/components/ui/label.js",
+      "types": "./dist/types/components/ui/label.d.ts"
+    },
+    "./components/menubar": {
+      "default": "./dist/cjs/components/ui/menubar.js",
+      "require": "./dist/cjs/components/ui/menubar.js",
+      "types": "./dist/types/components/ui/menubar.d.ts"
+    },
+    "./components/navigation-menu": {
+      "default": "./dist/cjs/components/ui/navigation-menu.js",
+      "require": "./dist/cjs/components/ui/navigation-menu.js",
+      "types": "./dist/types/components/ui/navigation-menu.d.ts"
+    },
+    "./components/popover": {
+      "default": "./dist/cjs/components/ui/popover.js",
+      "require": "./dist/cjs/components/ui/popover.js",
+      "types": "./dist/types/components/ui/popover.d.ts"
+    },
+    "./components/progress": {
+      "default": "./dist/cjs/components/ui/progress.js",
+      "require": "./dist/cjs/components/ui/progress.js",
+      "types": "./dist/types/components/ui/progress.d.ts"
+    },
+    "./components/radio-group": {
+      "default": "./dist/cjs/components/ui/radio-group.js",
+      "require": "./dist/cjs/components/ui/radio-group.js",
+      "types": "./dist/types/components/ui/radio-group.d.ts"
+    },
+    "./components/scroll-area": {
+      "default": "./dist/cjs/components/ui/scroll-area.js",
+      "require": "./dist/cjs/components/ui/scroll-area.js",
+      "types": "./dist/types/components/ui/scroll-area.d.ts"
+    },
+    "./components/select": {
+      "default": "./dist/cjs/components/ui/select.js",
+      "require": "./dist/cjs/components/ui/select.js",
+      "types": "./dist/types/components/ui/select.d.ts"
+    },
+    "./components/separator": {
+      "default": "./dist/cjs/components/ui/separator.js",
+      "require": "./dist/cjs/components/ui/separator.js",
+      "types": "./dist/types/components/ui/separator.d.ts"
+    },
+    "./components/sheet": {
+      "default": "./dist/cjs/components/ui/sheet.js",
+      "require": "./dist/cjs/components/ui/sheet.js",
+      "types": "./dist/types/components/ui/sheet.d.ts"
+    },
+    "./components/skeleton": {
+      "default": "./dist/cjs/components/ui/skeleton.js",
+      "require": "./dist/cjs/components/ui/skeleton.js",
+      "types": "./dist/types/components/ui/skeleton.d.ts"
+    },
+    "./components/slider": {
+      "default": "./dist/cjs/components/ui/slider.js",
+      "require": "./dist/cjs/components/ui/slider.js",
+      "types": "./dist/types/components/ui/slider.d.ts"
+    },
+    "./components/switch": {
+      "default": "./dist/cjs/components/ui/switch.js",
+      "require": "./dist/cjs/components/ui/switch.js",
+      "types": "./dist/types/components/ui/switch.d.ts"
+    },
+    "./components/table": {
+      "default": "./dist/cjs/components/ui/table.js",
+      "require": "./dist/cjs/components/ui/table.js",
+      "types": "./dist/types/components/ui/table.d.ts"
+    },
+    "./components/tabs": {
+      "default": "./dist/cjs/components/ui/tabs.js",
+      "require": "./dist/cjs/components/ui/tabs.js",
+      "types": "./dist/types/components/ui/tabs.d.ts"
+    },
+    "./components/textarea": {
+      "default": "./dist/cjs/components/ui/textarea.js",
+      "require": "./dist/cjs/components/ui/textarea.js",
+      "types": "./dist/types/components/ui/textarea.d.ts"
+    },
+    "./components/toast": {
+      "default": "./dist/cjs/components/ui/toast.js",
+      "require": "./dist/cjs/components/ui/toast.js",
+      "types": "./dist/types/components/ui/toast.d.ts"
+    },
+    "./components/toaster": {
+      "default": "./dist/cjs/components/ui/toaster.js",
+      "require": "./dist/cjs/components/ui/toaster.js",
+      "types": "./dist/types/components/ui/toaster.d.ts"
+    },
+    "./components/toggle": {
+      "default": "./dist/cjs/components/ui/toggle.js",
+      "require": "./dist/cjs/components/ui/toggle.js",
+      "types": "./dist/types/components/ui/toggle.d.ts"
+    },
+    "./components/tooltip": {
+      "default": "./dist/cjs/components/ui/tooltip.js",
+      "require": "./dist/cjs/components/ui/tooltip.js",
+      "types": "./dist/types/components/ui/tooltip.d.ts"
+    },
+    "./components/use-toast": {
+      "default": "./dist/cjs/components/ui/use-toast.js",
+      "require": "./dist/cjs/components/ui/use-toast.js",
+      "types": "./dist/types/components/ui/use-toast.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "dist/types/index.d.ts"
+      ],
+      "lib/utils": [
+        "dist/types/lib/utils.d.ts"
+      ],
+      "components/accordion": [
+        "dist/types/components/ui/accordion.d.ts"
+      ],
+      "components/alert-dialog": [
+        "dist/types/components/ui/alert-dialog.d.ts"
+      ],
+      "components/alert": [
+        "dist/types/components/ui/alert.d.ts"
+      ],
+      "components/aspect-ratio": [
+        "dist/types/components/ui/aspect-ratio.d.ts"
+      ],
+      "components/avatar": [
+        "dist/types/components/ui/avatar.d.ts"
+      ],
+      "components/badge": [
+        "dist/types/components/ui/badge.d.ts"
+      ],
+      "components/button": [
+        "dist/types/components/ui/button.d.ts"
+      ],
+      "components/calendar": [
+        "dist/types/components/ui/calendar.d.ts"
+      ],
+      "components/card": [
+        "dist/types/components/ui/card.d.ts"
+      ],
+      "components/checkbox": [
+        "dist/types/components/ui/checkbox.d.ts"
+      ],
+      "components/collapsible": [
+        "dist/types/components/ui/collapsible.d.ts"
+      ],
+      "components/command": [
+        "dist/types/components/ui/command.d.ts"
+      ],
+      "components/context-menu": [
+        "dist/types/components/ui/context-menu.d.ts"
+      ],
+      "components/dialog": [
+        "dist/types/components/ui/dialog.d.ts"
+      ],
+      "components/dropdown-menu": [
+        "dist/types/components/ui/dropdown-menu.d.ts"
+      ],
+      "components/hover-card": [
+        "dist/types/components/ui/hover-card.d.ts"
+      ],
+      "components/input": [
+        "dist/types/components/ui/input.d.ts"
+      ],
+      "components/label": [
+        "dist/types/components/ui/label.d.ts"
+      ],
+      "components/menubar": [
+        "dist/types/components/ui/menubar.d.ts"
+      ],
+      "components/navigation-menu": [
+        "dist/types/components/ui/navigation-menu.d.ts"
+      ],
+      "components/popover": [
+        "dist/types/components/ui/popover.d.ts"
+      ],
+      "components/progress": [
+        "dist/types/components/ui/progress.d.ts"
+      ],
+      "components/radio-group": [
+        "dist/types/components/ui/radio-group.d.ts"
+      ],
+      "components/scroll-area": [
+        "dist/types/components/ui/scroll-area.d.ts"
+      ],
+      "components/select": [
+        "dist/types/components/ui/select.d.ts"
+      ],
+      "components/separator": [
+        "dist/types/components/ui/separator.d.ts"
+      ],
+      "components/sheet": [
+        "dist/types/components/ui/sheet.d.ts"
+      ],
+      "components/skeleton": [
+        "dist/types/components/ui/skeleton.d.ts"
+      ],
+      "components/slider": [
+        "dist/types/components/ui/slider.d.ts"
+      ],
+      "components/switch": [
+        "dist/types/components/ui/switch.d.ts"
+      ],
+      "components/table": [
+        "dist/types/components/ui/table.d.ts"
+      ],
+      "components/tabs": [
+        "dist/types/components/ui/tabs.d.ts"
+      ],
+      "components/textarea": [
+        "dist/types/components/ui/textarea.d.ts"
+      ],
+      "components/toast": [
+        "dist/types/components/ui/toast.d.ts"
+      ],
+      "components/toaster": [
+        "dist/types/components/ui/toaster.d.ts"
+      ],
+      "components/toggle": [
+        "dist/types/components/ui/toggle.d.ts"
+      ],
+      "components/tooltip": [
+        "dist/types/components/ui/tooltip.d.ts"
+      ],
+      "components/use-toast": [
+        "dist/types/components/ui/use-toast.d.ts"
+      ]
+    }
+  },
+  "main": "./dist/cjs/index.jsx",
+  "types": "./dist/types/index.d.ts",
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-alert-dialog": "^1.0.4",
+    "@radix-ui/react-aspect-ratio": "^1.0.3",
+    "@radix-ui/react-avatar": "^1.0.3",
+    "@radix-ui/react-checkbox": "^1.0.4",
+    "@radix-ui/react-collapsible": "^1.0.3",
+    "@radix-ui/react-context-menu": "^2.1.4",
+    "@radix-ui/react-dialog": "^1.0.4",
+    "@radix-ui/react-dropdown-menu": "^2.0.5",
+    "@radix-ui/react-hover-card": "^1.0.6",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-menubar": "^1.0.3",
+    "@radix-ui/react-navigation-menu": "^1.1.3",
+    "@radix-ui/react-popover": "^1.0.6",
+    "@radix-ui/react-progress": "^1.0.3",
+    "@radix-ui/react-radio-group": "^1.1.3",
+    "@radix-ui/react-scroll-area": "^1.0.4",
+    "@radix-ui/react-select": "^1.2.2",
+    "@radix-ui/react-separator": "^1.0.3",
+    "@radix-ui/react-slider": "^1.1.2",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-switch": "^1.0.3",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@radix-ui/react-toast": "^1.1.4",
+    "@radix-ui/react-toggle": "^1.0.3",
+    "@radix-ui/react-tooltip": "^1.0.6",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "cmdk": "^0.2.0",
+    "date-fns": "^2.30.0",
+    "react-day-picker": "^8.8.0",
+    "tailwind-merge": "^1.14.0"
+  },
+  "module": "./dist/esm/index.mjs"
 }
