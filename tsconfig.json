@@ -9,7 +9,10 @@
 		"moduleResolution": "node",
 		"outDir": "./dist",
 		"skipLibCheck": true,
-		"target": "es2017"
+		"target": "es2017",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
 	},
 	"include": ["src"]
 }
