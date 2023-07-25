@@ -3,7 +3,7 @@ const { join } = require("node:path");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: ["class"],
-	content: [join("node_modules", "@lshay", "ui", "dist", "cjs", "**", "*.js"), "./src/**/*.{ts,tsx}"],
+	content: [join("node_modules", "@lshay", "ui", "dist", "**", "*.js"), "./src/**/*.{ts,tsx}"],
 	theme: {
 		container: {
 			center: true,
