@@ -1,7 +1,9 @@
 
 !src/lib/utils.ts
+./src
 .idea
-.vscode
+*.log
 dist
 node_modules
-./src
+test/src/demos
+!test/src/demos/default

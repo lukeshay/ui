@@ -4,6 +4,7 @@ import { mkdir, rm, readFile, writeFile } from "node:fs/promises";
 
 import { styles } from "@lshay/ui/lib/styles";
 import { globby } from "globby";
+import { exec } from "node:child_process";
 
 const demos = await globby("./src/demos/default/*.tsx");
 
@@ -87,3 +88,5 @@ const demosIndex = [
 ];
 
 await writeFile("./src/demos/index.ts", demosIndex.join("\n"));
+
+exec("pnpm run format");
