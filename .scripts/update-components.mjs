@@ -1,119 +1,88 @@
 #!/usr/bin/env node
 
-import { rmSync, writeFileSync, mkdirSync, readFileSync } from "node:fs";
-import { resolve, join } from "node:path";
-import { execSync } from "node:child_process";
+import { resolve } from "node:path";
 
-import { z } from "zod";
 import { globby } from "globby";
-import { pascalCase } from "change-case";
+import { fetchComponents, fetchStyles } from "./lib/registry.mjs";
+import { execAsync, readFileAsync, rmAsync, writeFileAsync } from "./lib/node.mjs";
+import { createComponentsConfig } from "./lib/utils.mjs";
 
-import packageJson from "../package.json" assert { type: "json" };
-
-const INSTALL_DIR = resolve("src", "components", "ui");
-const COMPONENTS_ENDPOINT = "https://ui.shadcn.com/api/components";
-
-const COMPONENT_SCHEMA = z.object({
-	name: z.string(),
-	dependencies: z.array(z.string()).optional(),
-	files: z.array(
-		z.object({
-			name: z.string(),
-			dir: z.string(),
-			content: z.string(),
-		}),
-	),
-});
-
-const COMPONENTS_SCHEMA = z.array(COMPONENT_SCHEMA);
+const INSTALL_DIR = resolve("src", "components");
 
 const main = async () => {
 	// Remove the old components
-	rmSync(INSTALL_DIR, {
+	await rmAsync(INSTALL_DIR, {
 		force: true,
 		recursive: true,
 	});
 
-	// Fetch the components from ui.shadcn.com
-	const response = await fetch(COMPONENTS_ENDPOINT);
-	const resultJson = await response.json();
-	const components = COMPONENTS_SCHEMA.parse(resultJson);
+	const components = await fetchComponents();
+	const styles = await fetchStyles();
 
-	// Make the directory where the components will be installed
-	mkdirSync(INSTALL_DIR, {
-		recursive: true,
-	});
+	const currentReadme = (await readFileAsync("./README.template.md")).toString("utf-8");
 
-	// Write the metadata file which contains the response from ui.shadcn.com
-	writeFileSync(join(INSTALL_DIR, "metadata.json"), JSON.stringify(components, undefined, 4));
+	await writeFileAsync("./src/lib/styles.ts", `export const styles = ${JSON.stringify(styles, null, 2)};`);
 
-	const currentReadme = readFileSync("./README.template.md").toString("utf-8");
+	for (const { name } of styles) {
+		await createComponentsConfig(name);
 
-	/**
-	 * @type {string[]}
-	 */
-	const dependencies = [];
+		await execAsync(
+			`npx shadcn-ui@latest add --yes --overwrite --path ./src/components/${name} ${components
+				.map((c) => c.name)
+				.join(" ")}`,
+		);
+	}
 
 	/**
 	 * @type {string[]}
 	 */
-	const readme = [currentReadme, "## Components"];
-
-	components.forEach((component) => {
-		dependencies.push(...(component.dependencies ?? []));
-
-		// Write each component to the directory
-		component.files.forEach((file) => {
-			writeFileSync(join(INSTALL_DIR, file.name), file.content);
-		});
-
-		// Add the component to the README
-		const name = pascalCase(component.name);
-
-		readme.push(`### ${name}`);
-		readme.push("");
-		readme.push("```tsx");
-		readme.push(`import { ${name} } from "@lshay/ui/components/${component.files[0].name.replace(".tsx", "")}";`);
-		readme.push("```");
-	});
-
-	// Add the timestamp to the README
-	readme.push("## Updated At");
-	readme.push(new Date().toISOString());
+	const readme = [currentReadme, "## Components", "## Updated At", new Date().toISOString()];
 
 	// Write the README
-	writeFileSync("./README.md", readme.join("\n"));
+	void writeFileAsync("./README.md", readme.join("\n"));
 
-	console.log({ dependencies });
-
-	// Install the dependencies
-	execSync(`pnpm remove ${dependencies.filter((dep) => packageJson.dependencies[dep]).join(" ")}`, { stdio: "pipe" });
-	execSync(`pnpm add ${dependencies.join(" ")}`, { stdio: "pipe" });
-
-	// Rewrite imports to not use tsconfig.paths
 	const initialPaths = await globby("./src/**/*.{tsx,ts}");
 
-	const indexFile = initialPaths
-		.map((path) => {
-			if (path.includes("components/ui")) {
-				const contents = readFileSync(path).toString("utf-8");
-				const newContents = contents.replace(/@\/components\/ui/gu, ".").replace(/@\/lib\/utils/gu, "../../lib/utils");
+	await Promise.all(
+		initialPaths
+			.filter((path) => path.includes("components") && path.includes("ui"))
+			.map(async (path) => {
+				if (path.includes("components") && path.includes("ui")) {
+					const contents = (await readFileAsync(path)).toString("utf-8");
 
-				// BUG: Add the React import if it's missing. This is a bug in ui.shadcn.com.
-				writeFileSync(
-					path,
-					newContents.includes('import * as React from "react"')
-						? newContents
-						: `import * as React from "react";\n${newContents}`,
-				);
-			}
+					// BUG: Add the React import if it's missing. This is a bug in ui.shadcn.com.
+					await writeFileAsync(
+						path,
+						contents.includes('import * as React from "react"')
+							? contents
+							: `import * as React from "react";\n${contents}`,
+					);
+				}
+			}),
+	);
 
-			return `export * from "${path.replace(/(src\/|\.tsx?)/gu, "")}";`;
-		})
-		.join("\n");
+	// const indexFile = (
+	// 	await Promise.all(
+	// 		initialPaths.map(async (path) => {
+	// 			if (path.includes("components") && path.includes("ui")) {
+	// 				const contents = (await readFileAsync(path)).toString("utf-8");
 
-	// Write the index file
-	writeFileSync("./src/index.ts", indexFile);
+	// 				// BUG: Add the React import if it's missing. This is a bug in ui.shadcn.com.
+	// 				await writeFileAsync(
+	// 					path,
+	// 					contents.includes('import * as React from "react"')
+	// 						? contents
+	// 						: `import * as React from "react";\n${contents}`,
+	// 				);
+	// 			}
+
+	// 			return `export * from "${path.replace(/(src\/|\.tsx?)/gu, "")}";`;
+	// 		}),
+	// 	)
+	// ).join("\n");
+
+	// // Write the index file
+	// await writeFileAsync("./src/index.ts", indexFile);
 };
 
 void main();

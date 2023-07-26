@@ -1,11 +1,11 @@
 {
 	"$schema": "https://ui.shadcn.com/schema.json",
 	"aliases": {
-		"components": "@/components/default",
+		"components": "@/components/new-york",
 		"utils": "@/lib/utils"
 	},
 	"rsc": false,
-	"style": "default",
+	"style": "new-york",
 	"tailwind": {
 		"baseColor": "slate",
 		"config": "./tailwind.config.js",

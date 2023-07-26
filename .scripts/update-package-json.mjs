@@ -17,21 +17,25 @@ const run = async () => {
 				const withoutDistAndExtension = withoutDist.replace(/\.js$/u, "");
 				const cjsPath = `./dist/${withoutDistAndExtension}.js`;
 
-				return [`./${withoutDistAndExtension.replace("components/ui", "components")}`.replace("./index", "."), cjsPath];
+				return [`./${withoutDistAndExtension.replace("/ui/", "/")}`.replace("./index", "."), cjsPath];
 			}),
 	);
 
-	// packageJson.typesVersions = {
-	// 	"*": Object.fromEntries(
-	// 		Object.entries(packageJson.exports).map(([key, value]) => [
-	// 			key.replace("./", ""),
-	// 			[value.types.replace("./", "")],
-	// 		]),
-	// 	),
-	// };
+	packageJson.typesVersions = {
+		"*": Object.fromEntries(
+			Object.entries(packageJson.exports).map(([key, value]) => [
+				key.replace("./", ""),
+				[value.replace("./", "").replace(".js", ".d.ts")],
+			]),
+		),
+	};
 
-	packageJson.main = "./dist/index.js";
-	packageJson.types = "./dist/index.d.ts";
+	// packageJson.main = "./dist/index.js";
+	// packageJson.types = "./dist/index.d.ts";
+
+	packageJson.main = undefined;
+	packageJson.module = undefined;
+	packageJson.types = undefined;
 
 	writeFileSync("./package.json", JSON.stringify(packageJson, null, 2));
 };

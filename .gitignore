@@ -1,6 +1,7 @@
-node_modules/
-/dist/
-src/components/ui/
-.idea/
-.vscode/
-src/index.ts
+
+!src/lib/utils.ts
+.idea
+.vscode
+dist
+node_modules
+./src
