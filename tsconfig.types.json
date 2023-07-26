@@ -1,9 +1,0 @@
-{
-	"compilerOptions": {
-		"emitDeclarationOnly": true,
-		"stripInternal": true,
-		"outDir": "./dist"
-	},
-	"extends": "./tsconfig.json",
-	"include": ["src"]
-}

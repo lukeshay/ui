@@ -1,0 +1,51 @@
+{
+	"name": "@lshay/www",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"keywords": [
+		"shadcn-ui",
+		"@shadcn/ui",
+		"radix",
+		"react",
+		"tailwind",
+		"tailwindcss"
+	],
+	"author": "Luke Shay <https://github.com/lukeshay>",
+	"license": "MIT",
+	"scripts": {
+		"dev": "vite",
+		"build": "./.scripts/gen-demos.mjs && tsc && vite build",
+		"preview": "vite preview",
+		"deploy": "gh-pages -d dist",
+		"lint": "eslint --ignore-path .gitignore .",
+		"lint:fix": "pnpm run lint --fix",
+		"format": "prettier --write --check ."
+	},
+	"dependencies": {
+		"@lshay/ui": "workspace:^",
+		"highlight.js": "^11.8.0",
+		"lucide-react": "^0.263.1",
+		"react": "^18.2.0",
+		"react-code-blocks": "^0.1.2",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@lshay/eslint-config": "^0.3.4",
+		"@lshay/prettier-config": "^0.6.0",
+		"@types/react": "^18.2.17",
+		"@types/react-dom": "^18.2.7",
+		"@vitejs/plugin-react-swc": "^3.3.2",
+		"autoprefixer": "^10.4.14",
+		"eslint": "^8.45.0",
+		"gh-pages": "^5.0.0",
+		"globby": "^13.2.2",
+		"postcss": "^8.4.27",
+		"prettier": "^3.0.0",
+		"tailwindcss": "^3.3.3",
+		"tailwindcss-animate": "^1.0.6",
+		"typescript": "^5.1.6",
+		"vite": "^4.4.7"
+	},
+	"prettier": "@lshay/prettier-config"
+}
