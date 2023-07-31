@@ -172,7 +172,7 @@ module.exports = {
 					</div>
 				</div>
 			</section>
-			<section className="max-w-2xl container space-y-6">
+			<section className="max-w-2xl container space-y-10">
 				<div className="space-y-6">
 					<H2 id="toc">Components</H2>
 					<ul className="list-disc px-10">

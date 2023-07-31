@@ -12,7 +12,7 @@ export function CodeBlock({
 }: {
 	className?: string
 	code: string
-	language: "typescript" | "bash"
+	language: "bash" | "typescript"
 }): ReactNode {
 	const dangerouslySetInnerHTML = useMemo(
 		() => ({ __html: highlight(code, language) }),

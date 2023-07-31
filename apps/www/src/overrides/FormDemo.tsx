@@ -22,7 +22,7 @@ const formSchema = z.object({
 	}),
 })
 
-export default  function ProfileForm(): React.ReactNode {
+function FormDemo(): React.ReactNode {
 	// 1. Define your form.
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -62,3 +62,5 @@ export default  function ProfileForm(): React.ReactNode {
 		</Form>
 	)
 }
+
+export default FormDemo

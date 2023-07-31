@@ -11,25 +11,25 @@ import {
 	TabsList,
 	TabsTrigger,
 } from "@lshay/ui/components/default/tabs"
+import { snakeCase } from "change-case"
 import { ArrowUp } from "lucide-react"
 import { type ReactNode, useState } from "react"
-import { snakeCase } from "change-case"
 
 import type { Demo } from "../demos"
 
+import { ZERO } from "../lib/constants"
 import { CodeBlock } from "./CodeBlock"
 import { CopyButton } from "./CopyButton"
 import { LazyLoad } from "./LazyLoad"
-import { H3 } from "./Typography"
 import { Link } from "./Link"
+import { H3 } from "./Typography"
 
 export function CodeDemo({ demo }: { demo: Demo }): ReactNode {
-	const title = demo.name
 	const [selectedStyleName, setSelectedStyleName] = useState("default")
 	// eslint-disable-next-line security/detect-object-injection
 	const selectedStyle =
 		demo.styles.find((style) => style.name === selectedStyleName) ??
-		demo.styles[0]
+		demo.styles[ZERO]
 
 	function handleValueChange(value: string) {
 		setSelectedStyleName(value)
@@ -60,10 +60,10 @@ export function CodeDemo({ demo }: { demo: Demo }): ReactNode {
 		<div className="space-y-6">
 			<div className="flex justify-between" id={demo.name}>
 				<Link
-					external
 					href={`https://github.com/lukeshay/ui/blob/main/test/src/demos/${
 						selectedStyle.name
 					}/${demo.name.replace(" ", "")}Demo.tsx`}
+					isExternal
 				>
 					<H3 className="border-0">{demo.name}</H3>
 				</Link>
@@ -73,11 +73,11 @@ export function CodeDemo({ demo }: { demo: Demo }): ReactNode {
 						<ArrowUp size={16} />
 					</Link>
 					<Link
-						className="space-x-2"
-						external
 						href={`https://ui.shadcn.com/docs/components/${snakeCase(
 							demo.name,
 						).replace("_", "-")}`}
+						className="space-x-2"
+						isExternal
 					>
 						<span>@shadcn/ui</span>
 					</Link>
@@ -109,7 +109,7 @@ export function CodeDemo({ demo }: { demo: Demo }): ReactNode {
 						<StyleSelect />
 					</div>
 					<div className="flex min-h-[350px] w-full justify-center items-center px-4">
-						{selectedStyle && <LazyLoad import={selectedStyle.component} />}
+						<LazyLoad import={selectedStyle.component} />
 					</div>
 				</TabsContent>
 				<TabsContent
@@ -118,11 +118,9 @@ export function CodeDemo({ demo }: { demo: Demo }): ReactNode {
 				>
 					<div className="flex items-center justify-between h-8">
 						<StyleSelect />
-						{selectedStyle && <CopyButton value={selectedStyle.content} />}
+						<CopyButton value={selectedStyle.content} />
 					</div>
-					{selectedStyle && (
-						<CodeBlock code={selectedStyle.content} language="typescript" />
-					)}
+					<CodeBlock code={selectedStyle.content} language="typescript" />
 				</TabsContent>
 			</Tabs>
 		</div>

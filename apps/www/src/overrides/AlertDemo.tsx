@@ -6,7 +6,7 @@ import {
 } from "@lshay/ui/components/default/alert"
 import { Terminal } from "lucide-react"
 
-export default function AlertDemo(): React.ReactNode {
+function AlertDemo(): React.ReactNode {
 	return (
 		<Alert>
 			<Terminal className="h-4 w-4" />
@@ -17,3 +17,5 @@ export default function AlertDemo(): React.ReactNode {
 		</Alert>
 	)
 }
+
+export default AlertDemo

@@ -1,6 +1,7 @@
+import * as React from "react"
 import { AspectRatio } from "@lshay/ui/components/default/aspect-ratio"
 
-export default function AspectRatioDemo() {
+function AspectRatioDemo(): React.ReactNode {
 	return (
 		<AspectRatio ratio={16 / 9} className="bg-muted overflow-hidden">
 			<img
@@ -11,3 +12,5 @@ export default function AspectRatioDemo() {
 		</AspectRatio>
 	)
 }
+
+export default AspectRatioDemo

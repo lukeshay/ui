@@ -15,12 +15,13 @@ export type LazyLoadProperties<PROPS> =
 export function LazyLoad<PROPS>(
 	properties: LazyLoadProperties<PROPS>,
 ): ReactNode {
+	/* eslint-disable jsdoc/check-tag-names, no-inline-comments */
 	const Component = lazy(
-		// eslint-disable-next-line jsdoc/check-tag-names, no-inline-comments
 		"path" in properties
 			? async () => import(/** @vite-ignore */ properties.path)
 			: properties.import,
 	)
+	/* eslint-enable jsdoc/check-tag-names, no-inline-comments */
 
 	return (
 		<Suspense

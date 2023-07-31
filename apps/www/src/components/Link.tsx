@@ -1,33 +1,34 @@
+import type { ReactNode } from "react"
+
 import { cn } from "@lshay/ui/lib/utils"
 import { ExternalLink } from "lucide-react"
-import { ReactNode } from "react"
 
-export type LinkProps = {
-	href: string
-	external?: boolean
+export type LinkProperties = {
 	children: ReactNode
 	className?: string
+	href: string
+	isExternal?: boolean
 }
 
 export function Link({
-	external,
 	children,
 	className,
-	...props
-}: LinkProps): ReactNode {
+	isExternal,
+	...properties
+}: LinkProperties): ReactNode {
 	return (
 		<a
-			{...props}
+			{...properties}
 			className={cn(
 				"hover:underline underline-offset-2",
-				external && "flex space-x-3 items-center",
+				isExternal && "flex space-x-3 items-center",
 				className,
 			)}
-			rel={external ? "noreferrer" : undefined}
-			target={external ? "_blank" : undefined}
+			rel={isExternal ? "noreferrer" : undefined}
+			target={isExternal ? "_blank" : undefined}
 		>
 			{children}
-			{external && <ExternalLink size={16} />}
+			{isExternal && <ExternalLink size={16} />}
 		</a>
 	)
 }

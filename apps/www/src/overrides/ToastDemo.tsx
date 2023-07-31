@@ -2,7 +2,7 @@ import * as React from "react"
 import { useToast } from "@lshay/ui/components/new-york/use-toast"
 import { Button } from "@lshay/ui/components/default/button"
 
-export default  function ToastDemo(): React.ReactNode {
+function ToastDemo(): React.ReactNode {
 	const { toast } = useToast()
 
 	return (
@@ -18,3 +18,5 @@ export default  function ToastDemo(): React.ReactNode {
 		</Button>
 	)
 }
+
+export default ToastDemo

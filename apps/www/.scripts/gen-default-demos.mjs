@@ -1,19 +1,22 @@
 #!/usr/bin/env node
-/* eslint-disable security/detect-non-literal-fs-filename */
-import { globby } from "globby"
-import { dirname } from "node:path"
-import { pascalCase, capitalCase } from "change-case"
+/* eslint-disable security/detect-non-literal-fs-filename, max-statements, sonarjs/cognitive-complexity, no-console, @typescript-eslint/no-magic-numbers, consistent-return */
 import { styles } from "@lshay/ui/lib/styles"
-import { writeFile, readFile, rm, mkdir } from "node:fs/promises"
+import { capitalCase, pascalCase } from "change-case"
+import { globby } from "globby"
 import { existsSync } from "node:fs"
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises"
+import { dirname } from "node:path"
+import { format } from "prettier"
+
+import prettierConfig from "../.prettierrc.cjs"
 
 const demoFiles = await globby("./ui/**/*.mdx")
 
 const demosContent = await Promise.all(
 	demoFiles.map(async (demoFile) => {
-		const dir = dirname(demoFile)
+		const directory = dirname(demoFile)
 
-		const fileName = demoFile.replace(`${dir}/`, "").replace(".mdx", "")
+		const fileName = demoFile.replace(`${directory}/`, "").replace(".mdx", "")
 		const name = `${pascalCase(fileName)}Demo`
 		const overrideFileName = `src/overrides/${name}.tsx`
 
@@ -101,13 +104,13 @@ const demosContent = await Promise.all(
 							? `function ${name}(): React.ReactNode {`
 							: line,
 				  )
-				: [...importLines, ...componentLines]
+				: [...importLines, "\n", ...componentLines]
 
 		if (!newContentsLines.some((line) => line.includes("* as React"))) {
 			newContentsLines.unshift(`import * as React from "react"`)
 		}
 
-		newContentsLines.push(`export default ${name}`)
+		newContentsLines.push("\n", `export default ${name}`)
 
 		const content = newContentsLines
 			.join("\n")
@@ -117,14 +120,23 @@ const demosContent = await Promise.all(
 		if (content.includes("<ComponentPreview")) {
 			console.log(`Skipping ${name} as it uses <ComponentPreview />`)
 
-			return undefined
+			return
 		}
+
+		const formattedContent = await format(content, {
+			...prettierConfig,
+			parser: "typescript",
+			plugins: [],
+		})
 
 		return {
 			name,
 			overridden: false,
 			styles: styles.map((style) => {
-				const styleContent = content.replaceAll("REPLACE_STYLE", style.name)
+				const styleContent = formattedContent.replaceAll(
+					"REPLACE_STYLE",
+					style.name,
+				)
 
 				return {
 					component: "REPLACE_COMPONENT",
@@ -139,17 +151,17 @@ const demosContent = await Promise.all(
 
 const demos = demosContent.filter(Boolean)
 
-await rm("./src/demos", { recursive: true, force: true })
+await rm("./src/demos", { force: true, recursive: true })
 
 await Promise.all(
-	demos.map(async ({ name, styles, overridden }) => {
+	demos.map(async ({ name, overridden, styles: styless }) => {
 		await Promise.all(
-			styles.map(async ({ path, content }) => {
+			styless.map(async ({ content, path }) => {
 				console.log(`Writing ${name} to ${path}`, { overridden })
 
-				const dir = dirname(path)
+				const directory = dirname(path)
 
-				await mkdir(dir, { recursive: true })
+				await mkdir(directory, { recursive: true })
 
 				await writeFile(path, content)
 			}),
@@ -170,22 +182,24 @@ const demosIndex = [
 		.map(({ name }) => `Style<"${name}">`)
 		.join(", ")}] };`,
 	"",
-	`export const demos: ReadonlyArray<Demo> = [${demos.map((demo) => {
-		const stylesJson = demo.styles
-			.map((style) => {
-				const json = JSON.stringify(style)
+	`export const demos: ReadonlyArray<Demo> = [${demos
+		.map((demo) => {
+			const stylesJson = demo.styles
+				.map((style) => {
+					const json = JSON.stringify(style)
 
-				return json.replace(
-					'"REPLACE_COMPONENT"',
-					`async () => import("${style.path.replace("src/demos", ".")}")`,
-				)
-			})
-			.join(", ")
+					return json.replace(
+						'"REPLACE_COMPONENT"',
+						`async () => import("${style.path.replace("src/demos", ".")}")`,
+					)
+				})
+				.join(", ")
 
-		return `{ name: "${capitalCase(
-			demo.name.replace("Demo", ""),
-		)}", styles: [${stylesJson}] }`
-	})}];`,
+			return `{ name: "${capitalCase(
+				demo.name.replace("Demo", ""),
+			)}", styles: [${stylesJson}] }`
+		})
+		.join(",")}];`,
 ]
 
 await writeFile("./src/demos/index.ts", demosIndex.join("\n"))
