@@ -1,8 +1,7 @@
 import { writeFile } from "node:fs/promises"
 
 /**
- *
- * @param {string} style
+ * @param style
  */
 export const createComponentsConfig = async (style) => {
 	const config = {

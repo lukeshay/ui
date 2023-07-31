@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
-import { writeFile } from "node:fs/promises"
-
 import { globby } from "globby"
+import { writeFile } from "node:fs/promises"
 
 import packageJson from "../package.json" assert { type: "json" }
 
@@ -13,20 +12,23 @@ const run = async () => {
 		paths
 			.filter((path) => !path.includes("chunk-"))
 			.map((path) => {
-				const withoutDist = path.replace("./dist/cjs/", "")
-				const withoutDistAndExtension = withoutDist.replace(/\.js$/u, "")
+				const withoutDistribution = path.replace("./dist/cjs/", "")
+				const withoutDistributionAndExtension = withoutDistribution.replace(
+					/\.js$/u,
+					"",
+				)
 				const cjsPath = path
-				const esmPath = `./dist/esm/${withoutDistAndExtension}.mjs`
-				const typesPath = `./dist/types/${withoutDistAndExtension}.d.ts`
+				const esmPath = `./dist/esm/${withoutDistributionAndExtension}.mjs`
+				const typesPath = `./dist/types/${withoutDistributionAndExtension}.d.ts`
 
 				return [
-					`./${withoutDistAndExtension.replace("/ui/", "/")}`.replace(
+					`./${withoutDistributionAndExtension.replace("/ui/", "/")}`.replace(
 						"./index",
 						".",
 					),
 					{
-						require: cjsPath,
 						import: esmPath,
+						require: cjsPath,
 						types: typesPath,
 					},
 				]
@@ -60,8 +62,10 @@ const run = async () => {
 		},
 	}
 
-	// packageJson.main = "./dist/index.js";
-	// packageJson.types = "./dist/index.d.ts";
+	/*
+	 * PackageJson.main = "./dist/index.js";
+	 * packageJson.types = "./dist/index.d.ts";
+	 */
 
 	packageJson.main = undefined
 	packageJson.module = undefined

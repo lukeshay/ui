@@ -4,10 +4,11 @@ import {
 	AvatarImage,
 } from "@lshay/ui/components/default/avatar"
 
+
 export default function AvatarDemo() {
 	return (
 		<Avatar>
-			<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+			<AvatarImage alt="@shadcn" src="https://github.com/shadcn.png" />
 			<AvatarFallback>CN</AvatarFallback>
 		</Avatar>
 	)

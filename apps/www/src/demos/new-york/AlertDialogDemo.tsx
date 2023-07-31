@@ -1,3 +1,4 @@
+import { Button } from "@lshay/ui/components/default/button"
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -9,7 +10,7 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from "@lshay/ui/components/new-york/alert-dialog"
-import { Button } from "@lshay/ui/components/default/button"
+
 
 export default function AlertDialogDemo() {
 	return (

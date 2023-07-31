@@ -1,0 +1,2 @@
+[submodule "apps/www/shadcn"]
+	shallow = true

@@ -4,7 +4,20 @@
 		"skipLibCheck": true,
 		"module": "ESNext",
 		"moduleResolution": "bundler",
-		"allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"strictNullChecks": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true
 	},
-	"include": ["vite.config.ts"]
+	"include": [
+		".prettierrc.cjs",
+		".scripts/*",
+		"eslint.config.js",
+		"postcss.config.js",
+		"tailwind.config.cjs",
+		"vite.config.ts"
+	]
 }

@@ -1,37 +1,36 @@
-import { lazy, Suspense } from "react"
+import { type ComponentType, type ReactNode, Suspense, lazy } from "react";
 
-export type LazyLoadPathProps = {
-	path: string
-}
+export type LazyLoadPathProperties = {
+	path: string;
+};
 
-export type LazyLoadImportProps<T> = {
-	import: () => Promise<{ default: React.ComponentType<T> }>
-}
+export type LazyLoadImportProperties<PROPS> = {
+	import: () => Promise<{ default: ComponentType<PROPS> }>;
+};
 
-export type LazyLoadProps<T> = LazyLoadPathProps | LazyLoadImportProps<T>
+export type LazyLoadProperties<PROPS> = LazyLoadImportProperties<PROPS> | LazyLoadPathProperties;
 
-export function LazyLoad<T>(props: LazyLoadProps<T>) {
+export function LazyLoad<PROPS>(properties: LazyLoadProperties<PROPS>): ReactNode {
 	const Component = lazy(
-		"path" in props
-			? () => import(/* @vite-ignore */ props.path)
-			: props.import,
-	)
+		// eslint-disable-next-line jsdoc/check-tag-names, no-inline-comments
+		"path" in properties ? async () => import(/** @vite-ignore */ properties.path) : properties.import,
+	);
 
 	return (
 		<Suspense
 			fallback={
 				<div className="flex items-center text-sm text-muted-foreground">
 					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
+						className="mr-2 h-4 w-4 animate-spin"
 						fill="none"
+						height="24"
 						stroke="currentColor"
-						strokeWidth="2"
 						strokeLinecap="round"
 						strokeLinejoin="round"
-						className="mr-2 h-4 w-4 animate-spin"
+						strokeWidth="2"
+						viewBox="0 0 24 24"
+						width="24"
+						xmlns="http://www.w3.org/2000/svg"
 					>
 						<path d="M21 12a9 9 0 1 1-6.219-8.56" />
 					</svg>
@@ -41,5 +40,5 @@ export function LazyLoad<T>(props: LazyLoadProps<T>) {
 		>
 			<Component />
 		</Suspense>
-	)
+	);
 }

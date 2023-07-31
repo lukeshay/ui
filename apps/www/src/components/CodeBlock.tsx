@@ -1,22 +1,20 @@
-import { cn } from "@lshay/ui/lib/utils"
-import hljs from "highlight.js/lib/core"
-import typescript from "highlight.js/lib/languages/typescript"
-import bash from "highlight.js/lib/languages/bash"
-import "highlight.js/styles/a11y-light.css"
+import { cn } from "@lshay/ui/lib/utils";
+import { type ReactNode, useMemo } from "react";
 
-hljs.registerLanguage("typescript", typescript)
-hljs.registerLanguage("bash", bash)
+import { highlight } from "../lib/highlight";
+
+const style = { tabSize: 2 };
 
 export function CodeBlock({
+	className,
 	code,
 	language,
-	className,
 }: {
-	code: string
-	language: string
-	className?: string
-}) {
-	const highlightedCode = hljs.highlight(language, code).value
+	className?: string;
+	code: string;
+	language: string;
+}): ReactNode {
+	const dangerouslySetInnerHTML = useMemo(() => ({ __html: highlight(language, code) }), [language, code]);
 
 	return (
 		<div
@@ -25,9 +23,10 @@ export function CodeBlock({
 				className,
 			)}
 		>
-			<pre style={{ tabSize: 2 }}>
-				<code dangerouslySetInnerHTML={{ __html: highlightedCode }} />
+			<pre style={style}>
+				{/* eslint-disable-next-line react/no-danger */}
+				<code dangerouslySetInnerHTML={dangerouslySetInnerHTML} />
 			</pre>
 		</div>
-	)
+	);
 }

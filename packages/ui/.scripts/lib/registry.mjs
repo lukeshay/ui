@@ -4,9 +4,9 @@ const SHADCN_UI_REGISTRY_ENDPOINT = "https://ui.shadcn.com/registry"
 
 /**
  * @template Schema
- * @param {string | undefined} endpoint
- * @param {Schema} schema
- * @returns {Promise<z.infer<Schema>>}
+ * @param endpoint
+ * @param schema
+ * @returns
  */
 export const fetchRegistry = async (endpoint, schema) => {
 	const response = await fetch(
@@ -24,9 +24,9 @@ export const fetchComponents = async () =>
 		undefined,
 		z.array(
 			z.object({
-				name: z.string(),
 				dependencies: z.array(z.string()).optional(),
 				files: z.array(z.string()),
+				name: z.string(),
 				type: z.string(),
 			}),
 		),
@@ -37,8 +37,8 @@ export const fetchStyles = async () =>
 		"styles",
 		z.array(
 			z.object({
-				name: z.string(),
 				label: z.string(),
+				name: z.string(),
 			}),
 		),
 	)

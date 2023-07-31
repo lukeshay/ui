@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
 import { writeFile } from "node:fs/promises"
-
-import { parse, inc } from "semver"
+import { inc, parse } from "semver"
 
 import packageJson from "../package.json" assert { type: "json" }
 

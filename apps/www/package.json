@@ -3,6 +3,7 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
+	"files": ["src", "public"],
 	"keywords": [
 		"shadcn-ui",
 		"@shadcn/ui",
@@ -18,7 +19,7 @@
 		"build": "./.scripts/gen-demos.mjs && tsc && vite build",
 		"preview": "vite preview",
 		"deploy": "gh-pages -d dist",
-		"lint": "eslint --ignore-path .gitignore .",
+		"lint": "eslint --ignore-pattern src/demos .",
 		"lint:fix": "pnpm run lint --fix",
 		"format": "prettier --write --check ."
 	},
@@ -27,11 +28,11 @@
 		"highlight.js": "^11.8.0",
 		"lucide-react": "^0.263.1",
 		"react": "^18.2.0",
-		"react-code-blocks": "^0.1.2",
+		"react-code-blocks": "^0.1.3",
 		"react-dom": "^18.2.0"
 	},
 	"devDependencies": {
-		"@lshay/eslint-config": "^0.3.4",
+		"@lshay/eslint-config-flat": "^0.0.3",
 		"@lshay/prettier-config": "^0.6.0",
 		"@types/react": "^18.2.17",
 		"@types/react-dom": "^18.2.7",

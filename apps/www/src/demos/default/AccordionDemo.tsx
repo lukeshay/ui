@@ -5,9 +5,10 @@ import {
 	AccordionTrigger,
 } from "@lshay/ui/components/default/accordion"
 
+
 export default function AccordionDemo() {
 	return (
-		<Accordion type="single" collapsible className="w-full">
+		<Accordion className="w-full" collapsible type="single">
 			<AccordionItem value="item-1">
 				<AccordionTrigger>Is it accessible?</AccordionTrigger>
 				<AccordionContent>

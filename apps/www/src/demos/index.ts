@@ -11,14 +11,12 @@ export type Demo = {
 	styles: [Style<"default">, Style<"new-york">]
 }
 
-export const demos: ReadonlyArray<Demo> = [
+export const demos: readonly Demo[] = [
 	{
 		name: "Accordion",
 		styles: [
 			{
-				name: "default",
-				label: "Default",
-				path: "./demos/default/AccordionDemo",
+				component: async () => import("./default/AccordionDemo"),
 				content: `import {
 	Accordion,
 	AccordionContent,
@@ -53,12 +51,12 @@ export default function AccordionDemo() {
 	)
 }
 `,
-				component: async () => import("./default/AccordionDemo"),
+				label: "Default",
+				name: "default",
+				path: "./demos/default/AccordionDemo",
 			},
 			{
-				name: "new-york",
-				label: "New York",
-				path: "./demos/new-york/AccordionDemo",
+				component: async () => import("./new-york/AccordionDemo"),
 				content: `import {
 	Accordion,
 	AccordionContent,
@@ -93,7 +91,9 @@ export default function AccordionDemo() {
 	)
 }
 `,
-				component: async () => import("./new-york/AccordionDemo"),
+				label: "New York",
+				name: "new-york",
+				path: "./demos/new-york/AccordionDemo",
 			},
 		],
 	},
@@ -101,9 +101,7 @@ export default function AccordionDemo() {
 		name: "Alert",
 		styles: [
 			{
-				name: "default",
-				label: "Default",
-				path: "./demos/default/AlertDemo",
+				component: async () => import("./default/AlertDemo"),
 				content: `import { Terminal } from "lucide-react"
 
 import {
@@ -124,12 +122,12 @@ export default function AlertDemo() {
 	)
 }
 `,
-				component: async () => import("./default/AlertDemo"),
+				label: "Default",
+				name: "default",
+				path: "./demos/default/AlertDemo",
 			},
 			{
-				name: "new-york",
-				label: "New York",
-				path: "./demos/new-york/AlertDemo",
+				component: async () => import("./new-york/AlertDemo"),
 				content: `import { Terminal } from "lucide-react"
 
 import {
@@ -150,7 +148,9 @@ export default function AlertDemo() {
 	)
 }
 `,
-				component: async () => import("./new-york/AlertDemo"),
+				label: "New York",
+				name: "new-york",
+				path: "./demos/new-york/AlertDemo",
 			},
 		],
 	},
@@ -158,9 +158,7 @@ export default function AlertDemo() {
 		name: "Alert Dialog",
 		styles: [
 			{
-				name: "default",
-				label: "Default",
-				path: "./demos/default/AlertDialogDemo",
+				component: async () => import("./default/AlertDialogDemo"),
 				content: `import {
 	AlertDialog,
 	AlertDialogAction,
@@ -197,12 +195,12 @@ export default function AlertDialogDemo() {
 	)
 }
 `,
-				component: async () => import("./default/AlertDialogDemo"),
+				label: "Default",
+				name: "default",
+				path: "./demos/default/AlertDialogDemo",
 			},
 			{
-				name: "new-york",
-				label: "New York",
-				path: "./demos/new-york/AlertDialogDemo",
+				component: async () => import("./new-york/AlertDialogDemo"),
 				content: `import {
 	AlertDialog,
 	AlertDialogAction,
@@ -239,7 +237,9 @@ export default function AlertDialogDemo() {
 	)
 }
 `,
-				component: async () => import("./new-york/AlertDialogDemo"),
+				label: "New York",
+				name: "new-york",
+				path: "./demos/new-york/AlertDialogDemo",
 			},
 		],
 	},
@@ -247,9 +247,7 @@ export default function AlertDialogDemo() {
 		name: "Aspect Ratio",
 		styles: [
 			{
-				name: "default",
-				label: "Default",
-				path: "./demos/default/AspectRatioDemo",
+				component: async () => import("./default/AspectRatioDemo"),
 				content: `import { AspectRatio } from "@lshay/ui/components/default/aspect-ratio"
 
 export default function AspectRatioDemo() {
@@ -264,12 +262,12 @@ export default function AspectRatioDemo() {
 	)
 }
 `,
-				component: async () => import("./default/AspectRatioDemo"),
+				label: "Default",
+				name: "default",
+				path: "./demos/default/AspectRatioDemo",
 			},
 			{
-				name: "new-york",
-				label: "New York",
-				path: "./demos/new-york/AspectRatioDemo",
+				component: async () => import("./new-york/AspectRatioDemo"),
 				content: `import { AspectRatio } from "@lshay/ui/components/new-york/aspect-ratio"
 
 export default function AspectRatioDemo() {
@@ -284,7 +282,9 @@ export default function AspectRatioDemo() {
 	)
 }
 `,
-				component: async () => import("./new-york/AspectRatioDemo"),
+				label: "New York",
+				name: "new-york",
+				path: "./demos/new-york/AspectRatioDemo",
 			},
 		],
 	},
@@ -292,9 +292,7 @@ export default function AspectRatioDemo() {
 		name: "Avatar",
 		styles: [
 			{
-				name: "default",
-				label: "Default",
-				path: "./demos/default/AvatarDemo",
+				component: async () => import("./default/AvatarDemo"),
 				content: `import {
 	Avatar,
 	AvatarFallback,
@@ -310,12 +308,12 @@ export default function AvatarDemo() {
 	)
 }
 `,
-				component: async () => import("./default/AvatarDemo"),
+				label: "Default",
+				name: "default",
+				path: "./demos/default/AvatarDemo",
 			},
 			{
-				name: "new-york",
-				label: "New York",
-				path: "./demos/new-york/AvatarDemo",
+				component: async () => import("./new-york/AvatarDemo"),
 				content: `import {
 	Avatar,
 	AvatarFallback,
@@ -331,7 +329,9 @@ export default function AvatarDemo() {
 	)
 }
 `,
-				component: async () => import("./new-york/AvatarDemo"),
+				label: "New York",
+				name: "new-york",
+				path: "./demos/new-york/AvatarDemo",
 			},
 		],
 	},
@@ -339,28 +339,28 @@ export default function AvatarDemo() {
 		name: "Badge",
 		styles: [
 			{
-				name: "default",
-				label: "Default",
-				path: "./demos/default/BadgeDemo",
+				component: async () => import("./default/BadgeDemo"),
 				content: `import { Badge } from "@lshay/ui/components/default/badge"
 
 export default function BadgeDemo() {
 	return <Badge>Badge</Badge>
 }
 `,
-				component: async () => import("./default/BadgeDemo"),
+				label: "Default",
+				name: "default",
+				path: "./demos/default/BadgeDemo",
 			},
 			{
-				name: "new-york",
-				label: "New York",
-				path: "./demos/new-york/BadgeDemo",
+				component: async () => import("./new-york/BadgeDemo"),
 				content: `import { Badge } from "@lshay/ui/components/new-york/badge"
 
 export default function BadgeDemo() {
 	return <Badge>Badge</Badge>
 }
 `,
-				component: async () => import("./new-york/BadgeDemo"),
+				label: "New York",
+				name: "new-york",
+				path: "./demos/new-york/BadgeDemo",
 			},
 		],
 	},

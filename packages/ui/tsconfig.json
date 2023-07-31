@@ -9,10 +9,13 @@
 		"moduleResolution": "node",
 		"outDir": "./dist",
 		"skipLibCheck": true,
+		"strict": true,
+		"strictNullChecks": true,
 		"target": "es2017",
 		"paths": {
 			"@/*": ["./src-gen/*"]
-		}
+		},
+		"noUncheckedIndexedAccess": true
 	},
-	"include": ["src-gen"]
+	"include": ["src-gen", ".scripts/*", "eslint.config.js", ".prettierrc.cjs"]
 }

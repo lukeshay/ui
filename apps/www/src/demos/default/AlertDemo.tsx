@@ -1,10 +1,10 @@
-import { Terminal } from "lucide-react"
-
 import {
 	Alert,
 	AlertDescription,
 	AlertTitle,
 } from "@lshay/ui/components/default/alert"
+import { Terminal } from "lucide-react"
+
 
 export default function AlertDemo() {
 	return (

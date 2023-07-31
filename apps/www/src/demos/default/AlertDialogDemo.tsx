@@ -11,6 +11,7 @@ import {
 } from "@lshay/ui/components/default/alert-dialog"
 import { Button } from "@lshay/ui/components/default/button"
 
+
 export default function AlertDialogDemo() {
 	return (
 		<AlertDialog>

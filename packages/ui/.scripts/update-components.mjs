@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
-import { resolve } from "node:path"
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises"
-
 import { globby } from "globby"
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises"
+import { resolve } from "node:path"
 
-import { fetchComponents, fetchStyles } from "./lib/registry.mjs"
 import { execAsync } from "./lib/node.mjs"
+import { fetchComponents, fetchStyles } from "./lib/registry.mjs"
 import { createComponentsConfig } from "./lib/utils.mjs"
 
 const INSTALL_DIR = resolve("src-gen", "components")
