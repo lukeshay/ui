@@ -5,7 +5,7 @@ import { highlight } from "../lib/highlight"
 
 const style = { tabSize: 2 }
 
-export function CodeBlock({
+function CodeBlock({
 	className,
 	code,
 	language,
@@ -33,3 +33,5 @@ export function CodeBlock({
 		</div>
 	)
 }
+
+export { CodeBlock }

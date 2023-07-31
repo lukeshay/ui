@@ -35,6 +35,9 @@ importers:
       lucide-react:
         specifier: ^0.263.1
         version: 0.263.1(react@18.2.0)
+      million:
+        specifier: ^2.5.3
+        version: 2.5.3
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1423,6 +1426,14 @@ packages:
       '@babel/core': 7.22.9
       '@babel/helper-create-regexp-features-plugin': 7.22.9(@babel/core@7.22.9)
       '@babel/helper-plugin-utils': 7.22.5
+    dev: false
+
+  /@babel/polyfill@7.12.1:
+    resolution: {integrity: sha512-X0pi0V6gxLi6lFZpGmeNa4zxtwEmCs42isWLNjZZDE0Y8yVfgu0T2OAHlzBbdYlqbW/YXVvoBHpATEM+goCj8g==}
+    deprecated: 🚨 This package has been deprecated in favor of separate inclusion of a polyfill and regenerator-runtime (when needed). See the @babel/polyfill docs (https://babeljs.io/docs/en/babel-polyfill) for more information.
+    dependencies:
+      core-js: 2.6.12
+      regenerator-runtime: 0.13.11
     dev: false
 
   /@babel/preset-env@7.22.9(@babel/core@7.22.9):
@@ -4072,7 +4083,6 @@ packages:
     resolution: {integrity: sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
-    dev: true
 
   /ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
@@ -4304,6 +4314,16 @@ packages:
       '@babel/helper-define-polyfill-provider': 0.4.2(@babel/core@7.22.9)
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /babel-plugin-transform-react-createelement-to-jsx@1.1.0(@babel/core@7.22.9):
+    resolution: {integrity: sha512-43xMHy06ARCmF8UKte/9OJ+gp5bh51UoUe5SYTSBh3zFtcjxzCTzwKyGv8uOWGQNYrrPAl6iyynxARSXDCXoNA==}
+    engines: {node: '>=0.12'}
+    dependencies:
+      '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.22.9)
+      '@babel/polyfill': 7.12.1
+    transitivePeerDependencies:
+      - '@babel/core'
     dev: false
 
   /balanced-match@1.0.2:
@@ -4599,6 +4619,12 @@ packages:
     resolution: {integrity: sha512-7a9a3D1k4UCVKnLhrgALyFcP7YCsLOQIxPd0dKjf/6GuPcgyiGP70ewWdCGrSK7evyhymi0qO4EqCmSJofDeYw==}
     dependencies:
       browserslist: 4.21.9
+    dev: false
+
+  /core-js@2.6.12:
+    resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
+    deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+    requiresBuild: true
     dev: false
 
   /create-eslint-index@1.0.0:
@@ -6270,7 +6296,6 @@ packages:
   /kleur@4.1.5:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
-    dev: true
 
   /language-subtag-registry@0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}
@@ -6642,6 +6667,21 @@ packages:
       braces: 3.0.2
       picomatch: 2.3.1
     dev: true
+
+  /million@2.5.3:
+    resolution: {integrity: sha512-LknArVVOGfY4Jj2cfIAfw++BJAGeKLMMtBj/xdqTfNbm9CBJT6cT0HOdPr2n7/dYjKWIPtA4PwAR4Ee9XIA6Ew==}
+    dependencies:
+      '@babel/core': 7.22.9
+      '@babel/generator': 7.22.9
+      '@babel/plugin-syntax-jsx': 7.22.5(@babel/core@7.22.9)
+      '@babel/plugin-syntax-typescript': 7.22.5(@babel/core@7.22.9)
+      '@babel/types': 7.22.5
+      babel-plugin-transform-react-createelement-to-jsx: 1.1.0(@babel/core@7.22.9)
+      kleur: 4.1.5
+      unplugin: 1.4.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /mimic-fn@2.1.0:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
@@ -8352,6 +8392,15 @@ packages:
     engines: {node: '>= 4.0.0'}
     dev: true
 
+  /unplugin@1.4.0:
+    resolution: {integrity: sha512-5x4eIEL6WgbzqGtF9UV8VEC/ehKptPXDS6L2b0mv4FRMkJxRtjaJfOWDd6a8+kYbqsjklix7yWP0N3SUepjXcg==}
+    dependencies:
+      acorn: 8.10.0
+      chokidar: 3.5.3
+      webpack-sources: 3.2.3
+      webpack-virtual-modules: 0.5.0
+    dev: false
+
   /update-browserslist-db@1.0.11(browserslist@4.21.9):
     resolution: {integrity: sha512-dCwEFf0/oT85M1fHBg4F0jtLwJrutGoHSQXCh7u4o2t1drG+c0a9Flnqww6XUKSfQMPpJBRjU8d4RXB09qtvaA==}
     hasBin: true
@@ -8563,6 +8612,15 @@ packages:
   /webidl-conversions@4.0.2:
     resolution: {integrity: sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==}
     dev: true
+
+  /webpack-sources@3.2.3:
+    resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
+    engines: {node: '>=10.13.0'}
+    dev: false
+
+  /webpack-virtual-modules@0.5.0:
+    resolution: {integrity: sha512-kyDivFZ7ZM0BVOUteVbDFhlRt7Ah/CSPwJdi8hBpkK7QLumUqdLtVfm/PX/hkcnrvr0i77fO5+TjZ94Pe+C9iw==}
+    dev: false
 
   /whatwg-url@7.1.0:
     resolution: {integrity: sha512-WUu7Rg1DroM7oQvGWfOiAK21n74Gg+T4elXEQYkOhtyLeWiJFoOGLXPKI/9gzIie9CtwVLm8wtw6YJdKyxSjeg==}

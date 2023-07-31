@@ -19,4 +19,10 @@ export default [
 		fileNameCases: ["pascalCase"],
 		files: ["src/components/**/*.{ts,tsx}", "src/App.tsx"],
 	}),
+	{
+		rules: {
+			"import/group-exports": "error",
+			"no-undefined": "off",
+		},
+	},
 ]

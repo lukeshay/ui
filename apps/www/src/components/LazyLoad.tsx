@@ -1,20 +1,18 @@
 import { type ComponentType, type ReactNode, Suspense, lazy } from "react"
 
-export type LazyLoadPathProperties = {
+type LazyLoadPathProperties = {
 	path: string
 }
 
-export type LazyLoadImportProperties<PROPS> = {
+type LazyLoadImportProperties<PROPS> = {
 	import: () => Promise<{ default: ComponentType<PROPS> }>
 }
 
-export type LazyLoadProperties<PROPS> =
+type LazyLoadProperties<PROPS> =
 	| LazyLoadImportProperties<PROPS>
 	| LazyLoadPathProperties
 
-export function LazyLoad<PROPS>(
-	properties: LazyLoadProperties<PROPS>,
-): ReactNode {
+function LazyLoad<PROPS>(properties: LazyLoadProperties<PROPS>): ReactNode {
 	/* eslint-disable jsdoc/check-tag-names, no-inline-comments */
 	const Component = lazy(
 		"path" in properties
@@ -48,4 +46,11 @@ export function LazyLoad<PROPS>(
 			<Component />
 		</Suspense>
 	)
+}
+
+export {
+	LazyLoad,
+	type LazyLoadImportProperties,
+	type LazyLoadPathProperties,
+	type LazyLoadProperties,
 }

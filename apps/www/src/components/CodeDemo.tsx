@@ -24,7 +24,7 @@ import { LazyLoad } from "./LazyLoad"
 import { Link } from "./Link"
 import { H3 } from "./Typography"
 
-export function CodeDemo({ demo }: { demo: Demo }): ReactNode {
+function CodeDemo({ demo }: { demo: Demo }): ReactNode {
 	const [selectedStyleName, setSelectedStyleName] = useState("default")
 	// eslint-disable-next-line security/detect-object-injection
 	const selectedStyle =
@@ -126,3 +126,5 @@ export function CodeDemo({ demo }: { demo: Demo }): ReactNode {
 		</div>
 	)
 }
+
+export { CodeDemo }

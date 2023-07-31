@@ -41,7 +41,7 @@ function InlineCode({ children }: { children: ReactNode }): ReactNode {
 	)
 }
 
-export function App(): ReactNode {
+function App(): ReactNode {
 	const [packageManager, setPackageManager] = useState<"npm" | "pnpm" | "yarn">(
 		"npm",
 	)
@@ -195,3 +195,5 @@ module.exports = {
 		</main>
 	)
 }
+
+export { App }

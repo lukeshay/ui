@@ -4,14 +4,11 @@ import { type HTMLAttributes, type ReactNode, useEffect, useState } from "react"
 
 import { TWO_THOUSAND } from "../lib/constants"
 
-export type CopyButtonProperties = HTMLAttributes<HTMLButtonElement> & {
+type CopyButtonProperties = HTMLAttributes<HTMLButtonElement> & {
 	value: string
 }
 
-export function CopyButton({
-	value,
-	...properties
-}: CopyButtonProperties): ReactNode {
+function CopyButton({ value, ...properties }: CopyButtonProperties): ReactNode {
 	const [hasCopied, setHasCopied] = useState(false)
 
 	useEffect(() => {
@@ -32,3 +29,5 @@ export function CopyButton({
 		</Button>
 	)
 }
+
+export { CopyButton, type CopyButtonProperties }

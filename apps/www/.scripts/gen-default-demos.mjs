@@ -10,7 +10,7 @@ import { format } from "prettier"
 
 import prettierConfig from "../.prettierrc.cjs"
 
-const demoFiles = await globby("./ui/**/*.mdx")
+const demoFiles = await globby("./ui/apps/www/content/docs/components/*.mdx")
 
 const demosContent = await Promise.all(
 	demoFiles.map(async (demoFile) => {
@@ -116,6 +116,8 @@ const demosContent = await Promise.all(
 			.join("\n")
 			.replaceAll("@/components/ui", `@lshay/ui/components/REPLACE_STYLE`)
 			.replaceAll("@/lib/utils", "@lshay/ui/lib/utils")
+			.replaceAll("export function", "function")
+			.replaceAll("export const", "const")
 
 		if (content.includes("<ComponentPreview")) {
 			console.log(`Skipping ${name} as it uses <ComponentPreview />`)
@@ -182,7 +184,7 @@ const demosIndex = [
 		.map(({ name }) => `Style<"${name}">`)
 		.join(", ")}] };`,
 	"",
-	`export const demos: ReadonlyArray<Demo> = [${demos
+	`export const demos: Array<Demo> = [${demos
 		.map((demo) => {
 			const stylesJson = demo.styles
 				.map((style) => {
@@ -202,4 +204,11 @@ const demosIndex = [
 		.join(",")}];`,
 ]
 
-await writeFile("./src/demos/index.ts", demosIndex.join("\n"))
+await writeFile(
+	"./src/demos/index.ts",
+	await format(demosIndex.join("\n"), {
+		...prettierConfig,
+		parser: "typescript",
+		plugins: [],
+	}),
+)

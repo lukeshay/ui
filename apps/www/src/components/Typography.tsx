@@ -2,12 +2,12 @@ import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react"
 
 import { cn } from "@lshay/ui/lib/utils"
 
-export type TypographyProperties = DetailedHTMLProps<
+type TypographyProperties = DetailedHTMLProps<
 	HTMLAttributes<HTMLHeadingElement>,
 	HTMLHeadingElement
 >
 
-export function H1({
+function H1({
 	children,
 	className,
 	...properties
@@ -25,7 +25,7 @@ export function H1({
 	)
 }
 
-export function H2({
+function H2({
 	children,
 	className,
 	...properties
@@ -43,7 +43,7 @@ export function H2({
 	)
 }
 
-export function H3({
+function H3({
 	children,
 	className,
 	...properties
@@ -61,7 +61,7 @@ export function H3({
 	)
 }
 
-export function H4({
+function H4({
 	children,
 	className,
 	...properties
@@ -78,3 +78,6 @@ export function H4({
 		</h4>
 	)
 }
+
+// eslint-disable-next-line react-refresh/only-export-components
+export { H1, H2, H3, H4, type TypographyProperties }

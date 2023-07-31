@@ -3,14 +3,14 @@ import type { ReactNode } from "react"
 import { cn } from "@lshay/ui/lib/utils"
 import { ExternalLink } from "lucide-react"
 
-export type LinkProperties = {
+type LinkProperties = {
 	children: ReactNode
 	className?: string
 	href: string
 	isExternal?: boolean
 }
 
-export function Link({
+function Link({
 	children,
 	className,
 	isExternal,
@@ -32,3 +32,5 @@ export function Link({
 		</a>
 	)
 }
+
+export { Link, type LinkProperties }
