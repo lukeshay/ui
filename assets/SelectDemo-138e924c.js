@@ -1,0 +1,1 @@
+import{j as e,a4 as a,a5 as l,a6 as r,a7 as t,a8 as s}from"./index-4b973fe8.js";function n(){return e.jsxs(a,{children:[e.jsx(l,{className:"w-[180px]",children:e.jsx(r,{placeholder:"Theme"})}),e.jsxs(t,{children:[e.jsx(s,{value:"light",children:"Light"}),e.jsx(s,{value:"dark",children:"Dark"}),e.jsx(s,{value:"system",children:"System"})]})]})}export{n as default};
