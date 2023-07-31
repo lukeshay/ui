@@ -1,31 +1,34 @@
-import { Button } from "@lshay/ui/components/default/button";
-import { Check, Copy } from "lucide-react";
-import { type HTMLAttributes, type ReactNode, useEffect, useState } from "react";
+import { Button } from "@lshay/ui/components/default/button"
+import { Check, Copy } from "lucide-react"
+import { type HTMLAttributes, type ReactNode, useEffect, useState } from "react"
 
-import { TWO_THOUSAND } from "../lib/constants";
+import { TWO_THOUSAND } from "../lib/constants"
 
 export type CopyButtonProperties = HTMLAttributes<HTMLButtonElement> & {
-	value: string;
-};
+	value: string
+}
 
-export function CopyButton({ value, ...properties }: CopyButtonProperties): ReactNode {
-	const [hasCopied, setHasCopied] = useState(false);
+export function CopyButton({
+	value,
+	...properties
+}: CopyButtonProperties): ReactNode {
+	const [hasCopied, setHasCopied] = useState(false)
 
 	useEffect(() => {
 		setTimeout(() => {
-			setHasCopied(false);
-		}, TWO_THOUSAND);
-	}, [hasCopied]);
+			setHasCopied(false)
+		}, TWO_THOUSAND)
+	}, [hasCopied])
 
 	function handleClick() {
-		void navigator.clipboard.writeText(value);
+		void navigator.clipboard.writeText(value)
 
-		setHasCopied(true);
+		setHasCopied(true)
 	}
 
 	return (
 		<Button onClick={handleClick} size="icon" variant="ghost" {...properties}>
 			{hasCopied ? <Check size={16} /> : <Copy size={16} />}
 		</Button>
-	);
+	)
 }

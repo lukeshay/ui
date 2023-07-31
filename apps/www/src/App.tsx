@@ -1,34 +1,55 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@lshay/ui/components/default/select";
-import { type ReactNode, useState } from "react";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@lshay/ui/components/default/select"
+import { type ReactNode, useState } from "react"
 
-import { CodeBlock } from "./components/CodeBlock";
-import { CodeDemo } from "./components/CodeDemo";
-import { H1, H2, H3 } from "./components/Typography";
-import { demos } from "./demos";
+import { CodeBlock } from "./components/CodeBlock"
+import { CodeDemo } from "./components/CodeDemo"
+import { H1, H2, H3 } from "./components/Typography"
+import { demos } from "./demos"
 
 function ShadcnUILink(): ReactNode {
 	return (
-		<a className="underline" href="https://ui.shadcn.com/" rel="noreferrer" target="_blank">
+		<a
+			className="underline"
+			href="https://ui.shadcn.com/"
+			rel="noreferrer"
+			target="_blank"
+		>
 			@shadcn/ui
 		</a>
-	);
+	)
 }
 
 function Callout({ children }: { children: ReactNode }): ReactNode {
-	return <p className="bg-slate-100 rounded-sm border border-slate-200 p-4">{children}</p>;
+	return (
+		<p className="bg-slate-100 rounded-sm border border-slate-200 p-4">
+			{children}
+		</p>
+	)
 }
 
 function InlineCode({ children }: { children: ReactNode }): ReactNode {
-	return <span className="font-mono px-1 py-0.5 bg-slate-300 rounded text-sm">{children}</span>;
+	return (
+		<span className="font-mono px-1 py-0.5 bg-slate-300 rounded text-sm">
+			{children}
+		</span>
+	)
 }
 
 export function App(): ReactNode {
-	const [packageManager, setPackageManager] = useState<"npm" | "pnpm" | "yarn">("npm");
+	const [packageManager, setPackageManager] = useState<"npm" | "pnpm" | "yarn">(
+		"npm",
+	)
 
-	const installCommand = packageManager === "npm" ? "install" : "add";
+	const installCommand = packageManager === "npm" ? "install" : "add"
 
 	function handleChange(value: "npm" | "pnpm" | "yarn") {
-		setPackageManager(value);
+		setPackageManager(value)
 	}
 
 	return (
@@ -43,8 +64,11 @@ export function App(): ReactNode {
 				<div className="space-y-4">
 					<H2>Introduction</H2>
 					<p>
-						{"This package contains the published components that were created by "}
-						<ShadcnUILink />. All credit to the components and demos goes to them.
+						{
+							"This package contains the published components that were created by "
+						}
+						<ShadcnUILink />. All credit to the components and demos goes to
+						them.
 					</p>
 				</div>
 				<div className="space-y-8">
@@ -68,7 +92,10 @@ export function App(): ReactNode {
 									</SelectItem>
 								</SelectContent>
 							</Select>
-							<CodeBlock code={`${packageManager} ${installCommand} @lshay/ui`} language="bash" />
+							<CodeBlock
+								code={`${packageManager} ${installCommand} @lshay/ui`}
+								language="bash"
+							/>
 						</div>
 					</div>
 					<div className="space-y-4">
@@ -112,7 +139,10 @@ export function App(): ReactNode {
 								{" provides an export for "}
 								<InlineCode>cn</InlineCode>
 								{", "}
-								<InlineCode>{'import { cn } from "@lshay/ui/lib/utils"'}</InlineCode>.
+								<InlineCode>
+									{'import { cn } from "@lshay/ui/lib/utils"'}
+								</InlineCode>
+								.
 							</Callout>
 						</div>
 					</div>
@@ -148,7 +178,10 @@ module.exports = {
 					<ul className="list-disc px-10">
 						{demos.map(({ name }) => (
 							<li key={name}>
-								<a className="hover:underline underline-offset-2" href={`#${name}`}>
+								<a
+									className="hover:underline underline-offset-2"
+									href={`#${name}`}
+								>
 									{name}
 								</a>
 							</li>
@@ -160,5 +193,5 @@ module.exports = {
 				))}
 			</section>
 		</main>
-	);
+	)
 }

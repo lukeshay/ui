@@ -17,11 +17,12 @@
 		/* Linting */
 		"strict": true,
 		"strictNullChecks": true,
-		"noUnusedLocals": true,
+		"noUnusedLocals": false,
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedIndexedAccess": true
 	},
 	"include": ["src"],
+	"exclude": ["src/demos"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }

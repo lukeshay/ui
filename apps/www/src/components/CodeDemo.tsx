@@ -1,67 +1,88 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@lshay/ui/components/default/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@lshay/ui/components/default/tabs";
-import { ArrowUp, ExternalLink } from "lucide-react";
-import { type ReactNode, useState } from "react";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@lshay/ui/components/default/select"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@lshay/ui/components/default/tabs"
+import { ArrowUp } from "lucide-react"
+import { type ReactNode, useState } from "react"
+import { snakeCase } from "change-case"
 
-import type { Demo } from "../demos";
+import type { Demo } from "../demos"
 
-import { ZERO } from "../lib/constants";
-import { CodeBlock } from "./CodeBlock";
-import { CopyButton } from "./CopyButton";
-import { LazyLoad } from "./LazyLoad";
-import { H3 } from "./Typography";
+import { CodeBlock } from "./CodeBlock"
+import { CopyButton } from "./CopyButton"
+import { LazyLoad } from "./LazyLoad"
+import { H3 } from "./Typography"
+import { Link } from "./Link"
 
 export function CodeDemo({ demo }: { demo: Demo }): ReactNode {
-	const title = demo.name;
-	const [selectedStyleIndex, setSelectedStyleIndex] = useState(ZERO);
+	const title = demo.name
+	const [selectedStyleName, setSelectedStyleName] = useState("default")
 	// eslint-disable-next-line security/detect-object-injection
-	const selectedStyle = demo.styles[selectedStyleIndex];
+	const selectedStyle =
+		demo.styles.find((style) => style.name === selectedStyleName) ??
+		demo.styles[0]
 
 	function handleValueChange(value: string) {
-		setSelectedStyleIndex(Number(value));
+		setSelectedStyleName(value)
 	}
 
 	function StyleSelect() {
 		return (
-			<Select onValueChange={handleValueChange} value={String(selectedStyleIndex)}>
+			<Select
+				onValueChange={handleValueChange}
+				value={String(selectedStyleName)}
+			>
 				<SelectTrigger className="h-7 w-[145px] text-xs [&_svg]:h-4 [&_svg]:w-4">
 					<span className="text-muted-foreground">Style: </span>
 					<SelectValue placeholder="Select style" />
 				</SelectTrigger>
 				<SelectContent>
-					{demo.styles.map((style, index) => (
-						<SelectItem className="text-xs" key={style.name} value={String(index)}>
+					{demo.styles.map((style) => (
+						<SelectItem className="text-xs" key={style.name} value={style.name}>
 							{style.label}
 						</SelectItem>
 					))}
 				</SelectContent>
 			</Select>
-		);
+		)
 	}
 
 	return (
 		<div className="space-y-6">
-			<H3 className="flex justify-between border-0" id={title}>
-				<a
-					href={
-						selectedStyle &&
-						`https://github.com/lukeshay/ui/blob/main/test/src/demos/${selectedStyle.name}/${title.replace(
-							" ",
-							"",
-						)}Demo.tsx`
-					}
-					className="hover:underline underline-offset-2 flex items-center space-x-3"
-					rel="noreferrer"
-					target="_blank"
+			<div className="flex justify-between" id={demo.name}>
+				<Link
+					external
+					href={`https://github.com/lukeshay/ui/blob/main/test/src/demos/${
+						selectedStyle.name
+					}/${demo.name.replace(" ", "")}Demo.tsx`}
 				>
-					<span>{title}</span>
-					<ExternalLink size={16} />
-				</a>
-				<a className="font-normal text-base flex items-center space-x-2 hover:underline underline-offset-2" href="#toc">
-					<span>Back to top</span>
-					<ArrowUp size={16} />
-				</a>
-			</H3>
+					<H3 className="border-0">{demo.name}</H3>
+				</Link>
+				<div>
+					<Link className="flex items-center space-x-2" href="#toc">
+						<span>Back to top</span>
+						<ArrowUp size={16} />
+					</Link>
+					<Link
+						className="space-x-2"
+						external
+						href={`https://ui.shadcn.com/docs/components/${snakeCase(
+							demo.name,
+						).replace("_", "-")}`}
+					>
+						<span>@shadcn/ui</span>
+					</Link>
+				</div>
+			</div>
 
 			<Tabs className="relative mr-auto w-full" defaultValue="preview">
 				<div className="flex items-center justify-between pb-3">
@@ -80,7 +101,10 @@ export function CodeDemo({ demo }: { demo: Demo }): ReactNode {
 						</TabsTrigger>
 					</TabsList>
 				</div>
-				<TabsContent className="relative rounded-md border p-4 space-y-6" value="preview">
+				<TabsContent
+					className="relative rounded-md border p-4 space-y-6"
+					value="preview"
+				>
 					<div className="flex items-center justify-between h-8">
 						<StyleSelect />
 					</div>
@@ -88,14 +112,19 @@ export function CodeDemo({ demo }: { demo: Demo }): ReactNode {
 						{selectedStyle && <LazyLoad import={selectedStyle.component} />}
 					</div>
 				</TabsContent>
-				<TabsContent className="relative rounded-md border p-4 space-y-6" value="code">
+				<TabsContent
+					className="relative rounded-md border p-4 space-y-6"
+					value="code"
+				>
 					<div className="flex items-center justify-between h-8">
 						<StyleSelect />
 						{selectedStyle && <CopyButton value={selectedStyle.content} />}
 					</div>
-					{selectedStyle && <CodeBlock code={selectedStyle.content} language="typescript" />}
+					{selectedStyle && (
+						<CodeBlock code={selectedStyle.content} language="typescript" />
+					)}
 				</TabsContent>
 			</Tabs>
 		</div>
-	);
+	)
 }

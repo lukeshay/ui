@@ -1,4 +1,4 @@
-import { createConfig } from "@lshay/eslint-config-flat";
+import { createConfig } from "@lshay/eslint-config-flat"
 
 const BASE_CONFIG = {
 	globalIgnores: ["src/demos", ".turbo"],
@@ -7,7 +7,7 @@ const BASE_CONFIG = {
 	},
 	prettier: true,
 	react: true,
-};
+}
 
 export default [
 	...createConfig({
@@ -19,4 +19,4 @@ export default [
 		fileNameCases: ["pascalCase"],
 		files: ["src/components/**/*.{ts,tsx}", "src/App.tsx"],
 	}),
-];
+]

@@ -1,20 +1,23 @@
-import { cn } from "@lshay/ui/lib/utils";
-import { type ReactNode, useMemo } from "react";
+import { cn } from "@lshay/ui/lib/utils"
+import { type ReactNode, useMemo } from "react"
 
-import { highlight } from "../lib/highlight";
+import { highlight } from "../lib/highlight"
 
-const style = { tabSize: 2 };
+const style = { tabSize: 2 }
 
 export function CodeBlock({
 	className,
 	code,
 	language,
 }: {
-	className?: string;
-	code: string;
-	language: string;
+	className?: string
+	code: string
+	language: "typescript" | "bash"
 }): ReactNode {
-	const dangerouslySetInnerHTML = useMemo(() => ({ __html: highlight(language, code) }), [language, code]);
+	const dangerouslySetInnerHTML = useMemo(
+		() => ({ __html: highlight(code, language) }),
+		[language, code],
+	)
 
 	return (
 		<div
@@ -28,5 +31,5 @@ export function CodeBlock({
 				<code dangerouslySetInnerHTML={dangerouslySetInnerHTML} />
 			</pre>
 		</div>
-	);
+	)
 }
