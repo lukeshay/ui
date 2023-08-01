@@ -1,1 +1,0 @@
-import{j as r}from"./index-d7cf9877.js";import{p as o}from"./chunk-V7Y6JZDD-eef7fb40.js";import"./index-7e58ea91.js";function i(){return r.jsx(o,{htmlFor:"email",children:"Your email address"})}export{i as default};
