@@ -32,6 +32,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: "true"
       - uses: pnpm/action-setup@v2
         with:
           version: ${{ env.PNPM_VERSION }}
