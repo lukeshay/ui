@@ -1,6 +1,6 @@
 {
 	"name": "@lshay/ui",
-	"version": "0.0.12",
+	"version": "0.1.0",
 	"description": "Published version of @shadcn/ui",
 	"type": "commonjs",
 	"publishConfig": {
