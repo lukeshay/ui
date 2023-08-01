@@ -71,7 +71,8 @@ const run = async () => {
 	packageJson.module = undefined
 	packageJson.types = undefined
 
-	await writeFile("./package.json", JSON.stringify(packageJson, null, 2))
+	// eslint-disable-next-line @typescript-eslint/no-magic-numbers
+	await writeFile("./package.json", JSON.stringify(packageJson, undefined, 2))
 }
 
 void run()

@@ -5,6 +5,7 @@ import { env } from "node:process"
 
 import packageJson from "../package.json" assert { type: "json" }
 
+// eslint-disable-next-line max-statements
 const run = async () => {
 	if (!env.SKIP_UPDATE) {
 		packageJson.dependencies = undefined
@@ -22,7 +23,8 @@ const run = async () => {
 	packageJson.devDependencies["@types/react"] = undefined
 	packageJson.devDependencies["@types/react-dom"] = undefined
 
-	await writeFile("./package.json", JSON.stringify(packageJson, null, 2))
+	// eslint-disable-next-line @typescript-eslint/no-magic-numbers
+	await writeFile("./package.json", JSON.stringify(packageJson, undefined, 2))
 }
 
 void run()

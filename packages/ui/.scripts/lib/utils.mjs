@@ -1,7 +1,10 @@
 import { writeFile } from "node:fs/promises"
 
 /**
- * @param style
+ * Creates the components.json file,.
+ *
+ * @param {string} style - The style of the components.
+ * @returns {Promise<void>} - A promise that resolves when the file is created.
  */
 export const createComponentsConfig = async (style) => {
 	const config = {
@@ -21,5 +24,6 @@ export const createComponentsConfig = async (style) => {
 		tsx: true,
 	}
 
-	await writeFile("./components.json", JSON.stringify(config, null, 2))
+	// eslint-disable-next-line @typescript-eslint/no-magic-numbers
+	await writeFile("./components.json", JSON.stringify(config, undefined, 2))
 }

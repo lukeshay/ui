@@ -18,4 +18,10 @@ module.exports = [
 		},
 		prettier: true,
 	}),
+	{
+		files: ["**/*js"],
+		rules: {
+			"@typescript-eslint/explicit-module-boundary-types": "off",
+		},
+	},
 ]

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+/* eslint-disable max-statements */
 import { globby } from "globby"
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises"
 import { resolve } from "node:path"
@@ -27,15 +27,19 @@ const main = async () => {
 
 	await writeFile(
 		"./src-gen/lib/styles.ts",
-		`export const styles = ${JSON.stringify(styles, null, 2)};`,
+		// eslint-disable-next-line @typescript-eslint/no-magic-numbers
+		`export const styles = ${JSON.stringify(styles, undefined, 2)};`,
 	)
 
+	// eslint-disable-next-line fp/no-loops
 	for (const { name } of styles) {
+		// eslint-disable-next-line no-await-in-loop
 		await createComponentsConfig(name)
 
+		// eslint-disable-next-line no-await-in-loop
 		await execAsync(
 			`npx shadcn-ui@latest add --yes --overwrite --path ./src-gen/components/${name} ${components
-				.map((c) => c.name)
+				.map((component) => component.name)
 				.join(" ")}`,
 		)
 	}
@@ -47,7 +51,8 @@ const main = async () => {
 			.filter((path) => path.includes("components") && path.includes("ui"))
 			.map(async (path) => {
 				if (path.includes("components") && path.includes("ui")) {
-					const contents = (await readFile(path)).toString("utf-8")
+					const contentsBuffer = await readFile(path)
+					const contents = contentsBuffer.toString("utf8")
 
 					// BUG: Add the React import if it's missing. This is a bug in ui.shadcn.com.
 					await writeFile(
