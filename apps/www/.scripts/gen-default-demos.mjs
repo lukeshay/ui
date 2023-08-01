@@ -156,19 +156,9 @@ const demos = demosContent.filter(Boolean)
 await rm("./src/demos", { force: true, recursive: true })
 
 await Promise.all(
-	demos.map(async ({ name, overridden, styles: styless }) => {
-		await Promise.all(
-			styless.map(async ({ content, path }) => {
-				console.log(`Writing ${name} to ${path}`, { overridden })
-
-				const directory = dirname(path)
-
-				await mkdir(directory, { recursive: true })
-
-				await writeFile(path, content)
-			}),
-		)
-	}),
+	styles.map(async (style) =>
+		mkdir(`./src/demos/${style.name}`, { recursive: true }),
+	),
 )
 
 const demosIndex = [
@@ -204,11 +194,22 @@ const demosIndex = [
 		.join(",")}];`,
 ]
 
-await writeFile(
-	"./src/demos/index.ts",
-	await format(demosIndex.join("\n"), {
-		...prettierConfig,
-		parser: "typescript",
-		plugins: [],
+await Promise.all([
+	...demos.map(async ({ name, overridden, styles: styless }) => {
+		await Promise.all(
+			styless.map(async ({ content, path }) => {
+				console.log(`Writing ${name} to ${path}`, { overridden })
+
+				await writeFile(path, content)
+			}),
+		)
 	}),
-)
+	writeFile(
+		"./src/demos/index.ts",
+		await format(demosIndex.join("\n"), {
+			...prettierConfig,
+			parser: "typescript",
+			plugins: [],
+		}),
+	),
+])
