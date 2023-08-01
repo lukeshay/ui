@@ -1,1 +1,0 @@
-import{r as e,c as t,l}from"./index-4b973fe8.js";import{$ as a}from"./index-840d0934.js";var m=l("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"),p=e.forwardRef(({className:r,...o},s)=>e.createElement(a,{ref:s,className:t(m(),r),...o}));p.displayName=a.displayName;export{p};

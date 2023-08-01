@@ -1,0 +1,1 @@
+import{j as e}from"./index-d7cf9877.js";import{$ as o}from"./index-fa7c8108.js";var r=o;function s(){return e.jsx(r,{ratio:16/9,className:"bg-muted overflow-hidden",children:e.jsx("img",{src:"https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80",alt:"Photo by Drew Beamer",className:"rounded-md object-cover"})})}export{s as default};

@@ -1,0 +1,1 @@
+import{j as o}from"./index-d7cf9877.js";import{_ as r}from"./chunk-QVTDBOAX-c3a393ea.js";import{m as e}from"./chunk-55Z2D7DU-a7a65fb9.js";function m(){const{toast:t}=r();return o.jsx(e,{onClick:()=>{t({title:"Scheduled: Catch up",description:"Friday, February 10, 2023 at 5:57 PM"})},children:"Show Toast"})}export{m as default};

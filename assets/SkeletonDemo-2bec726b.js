@@ -1,0 +1,1 @@
+import{r as a,c as r,j as s}from"./index-d7cf9877.js";function n({className:e,...t}){return a.createElement("div",{className:r("animate-pulse rounded-md bg-muted",e),...t})}function m(){return s.jsx(n,{className:"w-[100px] h-[20px] rounded-full"})}export{m as default};
