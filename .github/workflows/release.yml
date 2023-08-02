@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-20.04
     environment:
       name: Release
-      url: ${{ steps.deployment.outputs.page_url }
+      url: ${{ steps.deployment.outputs.page_url }}
     permissions:
       contents: read
       pages: write
