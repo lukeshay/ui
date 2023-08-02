@@ -1,0 +1,6 @@
+.turbo
+*.log
+dist
+node_modules
+src/demos
+ui

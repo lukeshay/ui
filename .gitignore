@@ -1,5 +1,3 @@
-node_modules/
-/dist/
-src/components/ui/
-.idea/
-.vscode/
+*.log
+node_modules
+.turbo

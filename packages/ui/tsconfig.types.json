@@ -1,8 +1,9 @@
 {
 	"compilerOptions": {
 		"emitDeclarationOnly": true,
-		"stripInternal": true
+		"stripInternal": true,
+		"outDir": "./dist/types"
 	},
 	"extends": "./tsconfig.json",
-	"include": ["src"]
+	"include": ["src-gen"]
 }

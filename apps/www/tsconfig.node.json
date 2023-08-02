@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"composite": true,
+		"skipLibCheck": true,
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"strictNullChecks": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true
+	},
+	"include": [
+		".prettierrc.cjs",
+		".scripts/*",
+		"eslint.config.js",
+		"postcss.config.js",
+		"tailwind.config.cjs",
+		"vite.config.ts"
+	]
+}

@@ -1,0 +1,6 @@
+.turbo
+*.log
+components.json
+dist
+node_modules
+src-gen
