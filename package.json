@@ -26,10 +26,5 @@
 		"@lshay/prettier-config": "^0.6.0",
 		"prettier": "^3.0.0",
 		"turbo": "^1.10.12"
-	},
-	"pnpm": {
-		"patchedDependencies": {
-			"prettier-plugin-tailwindcss@0.4.1": "patches/prettier-plugin-tailwindcss@0.4.1.patch"
-		}
 	}
 }

@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  prettier-plugin-tailwindcss@0.4.1:
-    hash: sn3a3lxuzfhjxbvbxmcv2ub2cy
-    path: patches/prettier-plugin-tailwindcss@0.4.1.patch
-
 importers:
   .:
     devDependencies:
@@ -2572,7 +2567,7 @@ packages:
       prettier-plugin-packagejson: 2.4.5(prettier@3.0.0)
       prettier-plugin-sh: 0.13.1(prettier@3.0.0)
       prettier-plugin-sort-json: 1.0.0(prettier@3.0.0)
-      prettier-plugin-tailwindcss: 0.4.1(patch_hash=sn3a3lxuzfhjxbvbxmcv2ub2cy)(prettier-plugin-astro@0.11.0)(prettier-plugin-jsdoc@0.4.2)(prettier@3.0.0)
+      prettier-plugin-tailwindcss: 0.4.1(prettier-plugin-astro@0.11.0)(prettier-plugin-jsdoc@0.4.2)(prettier@3.0.0)
     transitivePeerDependencies:
       - "@ianvs/prettier-plugin-sort-imports"
       - "@prettier/plugin-pug"
@@ -9408,7 +9403,7 @@ packages:
       prettier: 3.0.0
     dev: true
 
-  /prettier-plugin-tailwindcss@0.4.1(patch_hash=sn3a3lxuzfhjxbvbxmcv2ub2cy)(prettier-plugin-astro@0.11.0)(prettier-plugin-jsdoc@0.4.2)(prettier@3.0.0):
+  /prettier-plugin-tailwindcss@0.4.1(prettier-plugin-astro@0.11.0)(prettier-plugin-jsdoc@0.4.2)(prettier@3.0.0):
     resolution:
       {
         integrity: sha512-hwn2EiJmv8M+AW4YDkbjJ6HlZCTzLyz1QlySn9sMuKV/Px0fjwldlB7tol8GzdgqtkdPtzT3iJ4UzdnYXP25Ag==,
@@ -9467,7 +9462,6 @@ packages:
       prettier-plugin-astro: 0.11.0
       prettier-plugin-jsdoc: 0.4.2(prettier@3.0.0)
     dev: true
-    patched: true
 
   /prettier@3.0.0:
     resolution:

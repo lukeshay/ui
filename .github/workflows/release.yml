@@ -14,24 +14,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  cache-deps:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
-        with:
-          version: ${{ env.PNPM_VERSION }}
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "pnpm"
-      - run: pnpm install
   verify:
     uses: ./.github/workflows/verify.yml
   release:
     needs:
       - verify
-      - cache-deps
     runs-on: ubuntu-20.04
     environment:
       name: Release
