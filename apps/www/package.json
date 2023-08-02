@@ -22,7 +22,7 @@
 		"build": "./.scripts/gen-default-demos.mjs && tsc && vite build",
 		"preview": "vite preview",
 		"deploy": "gh-pages -d dist",
-		"lint": "eslint --ignore-pattern src/demos .",
+		"lint": "eslint --ignore-pattern src/demos --ignore-pattern ui .",
 		"lint:fix": "pnpm run lint --fix",
 		"format": "prettier --write --check . '!ui'"
 	},
