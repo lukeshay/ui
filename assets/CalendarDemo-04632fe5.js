@@ -1,0 +1,1 @@
+import{r,j as o}from"./index-6980ecaf.js";import{p as s}from"./calendar-5a5b6e02.js";import"./index.esm-bd6e4f3b.js";import"./chevron-right-26bdc41b.js";function p(){const[e,t]=r.useState(new Date);return o.jsx(s,{mode:"single",selected:e,onSelect:t,className:"rounded-md border"})}export{p as default};

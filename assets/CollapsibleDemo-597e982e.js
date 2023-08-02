@@ -1,0 +1,1 @@
+import{j as e}from"./index-6980ecaf.js";import{a as r,d as o,e as s}from"./index-0c32d44d.js";var t=r,a=o,i=s;function n(){return e.jsxs(t,{children:[e.jsx(a,{children:"Can I use this in my project?"}),e.jsx(i,{children:"Yes. Free to use for personal and commercial projects. No attribution required."})]})}export{n as default};

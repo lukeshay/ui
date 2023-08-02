@@ -1,0 +1,1 @@
+import{j as e}from"./index-6980ecaf.js";import{s as r,P as o,m as t}from"./popover-ceddbace.js";import"./index-7f8ab362.js";function i(){return e.jsxs(r,{children:[e.jsx(o,{children:"Open"}),e.jsx(t,{children:"Place content for the popover here."})]})}export{i as default};
