@@ -24,7 +24,7 @@
 		"deploy": "gh-pages -d dist",
 		"lint": "eslint --ignore-pattern src/demos .",
 		"lint:fix": "pnpm run lint --fix",
-		"format": "prettier --write --check ."
+		"format": "prettier --write --check . '!ui'"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.1.1",
