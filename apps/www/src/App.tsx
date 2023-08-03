@@ -160,7 +160,7 @@ function App(): ReactNode {
 module.exports = {
 	// ...
 	content: [
-		"node_modules/@lshay/ui/dist/components/**/*.js",
+		CONTENT,
 		"./src/**/*.{ts,tsx}",
 		/* Other paths here */
 	],

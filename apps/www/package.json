@@ -55,11 +55,11 @@
 		"gh-pages": "^5.0.0",
 		"globby": "^13.2.2",
 		"postcss": "^8.4.27",
-		"prettier": "^3.0.0",
+		"prettier": "^3.0.1",
 		"tailwindcss": "^3.3.3",
 		"tailwindcss-animate": "^1.0.6",
 		"typescript": "^5.1.6",
-		"vite": "^4.4.7"
+		"vite": "^4.4.8"
 	},
 	"prettier": "@lshay/prettier-config"
 }
