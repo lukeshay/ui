@@ -24,5 +24,13 @@ export default [
 			"import/group-exports": "error",
 			"no-undefined": "off",
 		},
+		settings: {
+			react: {
+				createClass: "createReactClass",
+				fragment: "Fragment",
+				pragma: "React",
+				version: "detect",
+			},
+		},
 	},
 ]

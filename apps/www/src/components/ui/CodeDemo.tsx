@@ -15,9 +15,9 @@ import { snakeCase } from "change-case"
 import { ArrowUp } from "lucide-react"
 import { type ReactNode, useState } from "react"
 
-import type { Demo } from "../demos"
+import type { Demo } from "../../demos"
 
-import { ZERO } from "../lib/constants"
+import { ZERO } from "../../lib/constants"
 import { CodeBlock } from "./CodeBlock"
 import { CopyButton } from "./CopyButton"
 import { LazyLoad } from "./LazyLoad"
@@ -26,9 +26,9 @@ import { H3 } from "./Typography"
 
 function CodeDemo({ demo }: { demo: Demo }): ReactNode {
 	const [selectedStyleName, setSelectedStyleName] = useState("default")
-	// eslint-disable-next-line security/detect-object-injection
 	const selectedStyle =
 		demo.styles.find((style) => style.name === selectedStyleName) ??
+		// eslint-disable-next-line security/detect-object-injection
 		demo.styles[ZERO]
 
 	function handleValueChange(value: string) {

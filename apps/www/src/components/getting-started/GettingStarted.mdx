@@ -1,0 +1,29 @@
+import "../../styles/mdx.css"
+import { Section } from "./Section"
+import { ShadcnUiLink } from "./ShadcnUiLink"
+import { InstallCommandCodeBlock } from "./InstallCommandCodeBlock"
+import { TailwindCssConfigCodeBlock } from "./TailwindCssConfigCodeBlock"
+
+# Getting Started
+
+This package contains the published components that were created by <ShadcnUiLink />. All credit to the components and demos goes to them.
+
+## Installation
+
+### 1. Install `@lshay/ui`
+
+<InstallCommandCodeBlock />
+
+### 2. Follow the <ShadcnUiLink /> Directions
+
+Follow the steps <a className="underline" href="https://ui.shadcn.com/docs/installation" rel="noreferrer" target="_blank">linked here</a> to get started with <ShadcnUiLink />.
+
+> NOTE: When creating the `components.json` file, the only configuration that matters is `tailwind`. The rest is handled by `@lshay/ui`. You must have `tailwind.cssVariables` set to `true` for the components to work.
+
+> NOTE: You do not need to install `class-variance-authority`, `clsx`, and `tailwind-merge` because `@lshay/ui` provides an export for `cn`, `import { cn } from "@lshay/ui/lib/utils"`.
+
+### 3. Modify Tailwind CSS Config
+
+Add the following to `tailwind.config.js`.
+
+<TailwindCssConfigCodeBlock />

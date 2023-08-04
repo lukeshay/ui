@@ -3,4 +3,4 @@
 dist
 node_modules
 src/demos
-ui
+/ui

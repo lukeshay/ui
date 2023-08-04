@@ -1,0 +1,32 @@
+.mdx {
+	@apply space-y-6;
+}
+
+.mdx > * {
+	@apply max-w-2xl;
+}
+
+.mdx > h1 {
+	@apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl py-2;
+}
+
+.mdx > h2 {
+	@apply pt-2 scroll-m-20 border-b text-3xl font-semibold tracking-tight transition-colors first:mt-0;
+}
+
+.mdx > h3 {
+	@apply pt-2 scroll-m-20 text-2xl font-semibold tracking-tight;
+}
+
+.mdx > h4 {
+	@apply pt-2 scroll-m-20 text-xl font-semibold tracking-tight;
+}
+
+.mdx > blockquote {
+	@apply bg-slate-100 rounded-sm border border-slate-200 p-4;
+}
+
+.mdx > blockquote > p > code,
+.mdx > p > code {
+	@apply font-mono px-1 py-0.5 bg-slate-300 rounded text-sm;
+}

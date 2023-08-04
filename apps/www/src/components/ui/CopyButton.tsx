@@ -2,7 +2,7 @@ import { Button } from "@lshay/ui/components/default/button"
 import { Check, Copy } from "lucide-react"
 import { type HTMLAttributes, type ReactNode, useEffect, useState } from "react"
 
-import { TWO_THOUSAND } from "../lib/constants"
+import { TWO_THOUSAND } from "../../lib/constants"
 
 type CopyButtonProperties = HTMLAttributes<HTMLButtonElement> & {
 	value: string

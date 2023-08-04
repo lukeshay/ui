@@ -1,19 +1,21 @@
 import { cn } from "@lshay/ui/lib/utils"
 import { type ReactNode, useMemo } from "react"
 
-import { highlight } from "../lib/highlight"
+import { type Language, highlight } from "../../lib/highlight"
 
 const style = { tabSize: 2 }
+
+type CodeBlockProperties = {
+	className?: string
+	code: string
+	language: Language
+}
 
 function CodeBlock({
 	className,
 	code,
 	language,
-}: {
-	className?: string
-	code: string
-	language: "bash" | "typescript"
-}): ReactNode {
+}: CodeBlockProperties): ReactNode {
 	const dangerouslySetInnerHTML = useMemo(
 		() => ({ __html: highlight(code, language) }),
 		[language, code],
@@ -34,4 +36,4 @@ function CodeBlock({
 	)
 }
 
-export { CodeBlock }
+export { CodeBlock, type CodeBlockProperties }

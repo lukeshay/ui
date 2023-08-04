@@ -8,12 +8,14 @@ type LinkProperties = {
 	className?: string
 	href: string
 	isExternal?: boolean
+	shouldHideExternalIcon?: boolean
 }
 
 function Link({
 	children,
 	className,
 	isExternal,
+	shouldHideExternalIcon,
 	...properties
 }: LinkProperties): ReactNode {
 	return (
@@ -28,7 +30,7 @@ function Link({
 			target={isExternal ? "_blank" : undefined}
 		>
 			{children}
-			{isExternal && <ExternalLink size={16} />}
+			{isExternal && !shouldHideExternalIcon && <ExternalLink size={16} />}
 		</a>
 	)
 }

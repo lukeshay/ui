@@ -8,9 +8,10 @@ import "highlight.js/styles/a11y-light.css"
 hljs.registerLanguage("typescript", typescript)
 hljs.registerLanguage("bash", bash)
 
-export function highlight(
-	code: string,
-	language: "typescript" | "bash",
-): string {
+type Language = "typescript" | "bash"
+
+function highlight(code: string, language: Language): string {
 	return hljs.highlight(code, { language }).value
 }
+
+export { type Language, highlight }
