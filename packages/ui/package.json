@@ -1,6 +1,6 @@
 {
 	"name": "@lshay/ui",
-	"version": "0.1.14",
+	"version": "0.1.15",
 	"description": "Published version of @shadcn/ui",
 	"repository": {
 		"url": "https://github.com/lukeshay/ui",
@@ -80,6 +80,7 @@
 		"@radix-ui/react-tabs": "^1.0.4",
 		"@radix-ui/react-toast": "^1.1.5",
 		"@radix-ui/react-toggle": "^1.0.3",
+		"@radix-ui/react-toggle-group": "^1.0.4",
 		"@radix-ui/react-tooltip": "^1.0.7",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.0.0",
@@ -287,6 +288,11 @@
 			"require": "./dist/cjs/components/default/ui/toaster.js",
 			"types": "./dist/types/components/default/ui/toaster.d.ts"
 		},
+		"./components/default/toggle-group": {
+			"import": "./dist/esm/components/default/ui/toggle-group.mjs",
+			"require": "./dist/cjs/components/default/ui/toggle-group.js",
+			"types": "./dist/types/components/default/ui/toggle-group.d.ts"
+		},
 		"./components/default/toggle": {
 			"import": "./dist/esm/components/default/ui/toggle.mjs",
 			"require": "./dist/cjs/components/default/ui/toggle.js",
@@ -482,6 +488,11 @@
 			"require": "./dist/cjs/components/new-york/ui/toaster.js",
 			"types": "./dist/types/components/new-york/ui/toaster.d.ts"
 		},
+		"./components/new-york/toggle-group": {
+			"import": "./dist/esm/components/new-york/ui/toggle-group.mjs",
+			"require": "./dist/cjs/components/new-york/ui/toggle-group.js",
+			"types": "./dist/types/components/new-york/ui/toggle-group.d.ts"
+		},
 		"./components/new-york/toggle": {
 			"import": "./dist/esm/components/new-york/ui/toggle.mjs",
 			"require": "./dist/cjs/components/new-york/ui/toggle.js",
@@ -614,6 +625,9 @@
 			"components/default/toaster": [
 				"dist/types/components/default/ui/toaster.d.ts"
 			],
+			"components/default/toggle-group": [
+				"dist/types/components/default/ui/toggle-group.d.ts"
+			],
 			"components/default/toggle": [
 				"dist/types/components/default/ui/toggle.d.ts"
 			],
@@ -730,6 +744,9 @@
 			],
 			"components/new-york/toaster": [
 				"dist/types/components/new-york/ui/toaster.d.ts"
+			],
+			"components/new-york/toggle-group": [
+				"dist/types/components/new-york/ui/toggle-group.d.ts"
 			],
 			"components/new-york/toggle": [
 				"dist/types/components/new-york/ui/toggle.d.ts"
