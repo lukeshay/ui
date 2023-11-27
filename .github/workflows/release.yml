@@ -38,7 +38,7 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: git submodule update --recursive --remote
-      - run: pnpm install
+      - run: pnpm install --no-frozen-lockfile
       - run: pnpm run build
       # - run: pnpm run format
       - run: pnpm run lint
