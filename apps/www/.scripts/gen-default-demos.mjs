@@ -115,6 +115,10 @@ const demosContent = await Promise.all(
 		const content = newContentsLines
 			.join("\n")
 			.replaceAll("@/components/ui", `@lshay/ui/components/REPLACE_STYLE`)
+			.replaceAll(
+				/@\/registry\/[a-z-]+\/ui/gu,
+				`@lshay/ui/components/REPLACE_STYLE`,
+			)
 			.replaceAll("@/lib/utils", "@lshay/ui/lib/utils")
 			.replaceAll("export function", "function")
 			.replaceAll("export const", "const")
