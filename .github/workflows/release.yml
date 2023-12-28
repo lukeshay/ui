@@ -1,57 +1,13 @@
 name: Release
 
 on:
-  schedule:
-    - cron: "0 1 * * MON"
-  workflow_dispatch:
-
-env:
-  NODE_VERSION: "20"
-  PNPM_VERSION: "8"
-
-concurrency:
-  group: "release"
-  cancel-in-progress: false
+  push:
+    tags:
+      - "v*.*.*"
 
 jobs:
-  release:
-    runs-on: ubuntu-20.04
-    environment:
-      name: Release
-      url: ${{ steps.deployment.outputs.page_url }}
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
+  build:
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: "true"
-      - uses: pnpm/action-setup@v2
-        with:
-          version: ${{ env.PNPM_VERSION }}
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "pnpm"
-      - run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: git submodule update --recursive --remote
-      - run: pnpm install --no-frozen-lockfile
-      - run: pnpm run build
-      # - run: pnpm run format
-      - run: pnpm run lint
-      - run: pnpm run test
-      - run: cd packages/ui && ./.scripts/bump-version.mjs && pnpm publish --no-git-checks
-      - uses: actions/configure-pages@v3
-      - uses: actions/upload-pages-artifact@v2
-        with:
-          path: "./apps/www/dist"
-      - id: deployment
-        uses: actions/deploy-pages@v2
-      - uses: EndBug/add-and-commit@v9
-        with:
-          committer_name: GitHub Actions
-          committer_email: actions@github.com
-          message: "message"
+      - uses: actions/checkout@v4
+      - uses: softprops/action-gh-release@v1
