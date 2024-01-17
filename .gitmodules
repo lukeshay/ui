@@ -1,4 +1,3 @@
-[submodule "apps/www/ui"]
-	path = apps/www/ui
+[submodule "ui"]
+	path = ui
 	url = git@github.com:shadcn-ui/ui.git
-	shallow = true

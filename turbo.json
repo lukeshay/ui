@@ -1,20 +1,6 @@
 {
 	"$schema": "https://turbo.build/schema.json",
 	"pipeline": {
-		"format": {
-			"inputs": ["src", "package.json", "tsconfig*json", ".prettierrc.cjs"]
-		},
-		"lint": {
-			"dependsOn": ["^build"],
-			"inputs": ["src", "package.json", "tsconfig*json", ".eslintrc.cjs"]
-		},
-		"lint:fix": {
-			"dependsOn": ["^build"],
-			"inputs": ["src", "package.json", "tsconfig*json", ".eslintrc.cjs"]
-		},
-		"test": {
-			"dependsOn": ["^build"]
-		},
 		"build": {
 			"dependsOn": ["^build"],
 			"inputs": [
@@ -31,6 +17,20 @@
 		},
 		"deploy": {
 			"dependsOn": ["build"]
+		},
+		"format": {
+			"inputs": ["src", "package.json", "tsconfig*json", ".prettierrc.cjs"]
+		},
+		"lint": {
+			"dependsOn": ["^build"],
+			"inputs": ["src", "package.json", "tsconfig*json", ".eslintrc.cjs"]
+		},
+		"lint:fix": {
+			"dependsOn": ["^build"],
+			"inputs": ["src", "package.json", "tsconfig*json", ".eslintrc.cjs"]
+		},
+		"test": {
+			"dependsOn": ["^build"]
 		}
 	}
 }

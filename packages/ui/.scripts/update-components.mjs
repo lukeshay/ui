@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 import { globby } from "globby"
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises"
+import { execSync } from "node:child_process"
+import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises"
 import { resolve } from "node:path"
 
-import { execAsync } from "./lib/node.mjs"
+import shadcnPackageJson from "../../../ui/apps/www/package.json" assert { type: "json" }
 import { fetchComponents, fetchStyles } from "./lib/registry.mjs"
-import { createComponentsConfig } from "./lib/utils.mjs"
 
 const INSTALL_DIR = resolve("src-gen", "components")
 
@@ -20,8 +20,15 @@ await mkdir("./src-gen/lib", {
 	recursive: true,
 })
 
-const components = await fetchComponents()
 const styles = await fetchStyles()
+const components = await fetchComponents()
+
+execSync(
+	`pnpm i ${components
+		.flatMap((comp) => comp.dependencies)
+		.map((dep) => `${dep}@${shadcnPackageJson.dependencies[dep] ?? "latest"}`)
+		.join(" ")}`,
+)
 
 await writeFile(
 	"./src-gen/lib/styles.ts",
@@ -29,16 +36,18 @@ await writeFile(
 	`export const styles = ${JSON.stringify(styles, undefined, 2)};`,
 )
 
-// eslint-disable-next-line fp/no-loops
 for (const { name } of styles) {
-	// eslint-disable-next-line no-await-in-loop
-	await createComponentsConfig(name)
+	await mkdir(`src-gen/components/${name}/ui`, {
+		force: true,
+		recursive: true,
+	})
 
-	// eslint-disable-next-line no-await-in-loop
-	await execAsync(
-		`npx shadcn-ui@latest add --yes --overwrite --path ./src-gen/components/${name} ${components
-			.map((component) => component.name)
-			.join(" ")}`,
+	await cp(
+		`../../ui/apps/www/registry/${name}/ui`,
+		`src-gen/components/${name}/ui`,
+		{
+			recursive: true,
+		},
 	)
 }
 
@@ -48,18 +57,19 @@ await Promise.all(
 	initialPaths
 		.filter((path) => path.includes("components") && path.includes("ui"))
 		.map(async (path) => {
-			if (path.includes("components") && path.includes("ui")) {
-				const contentsBuffer = await readFile(path)
-				const contents = contentsBuffer.toString("utf8")
+			const contentsBuffer = await readFile(path)
+			const contents = contentsBuffer
+				.toString("utf8")
+				// eslint-disable-next-line unicorn/prefer-string-replace-all
+				.replace(/@\/registry\/(default|new-york)\/ui/gu, ".")
 
-				// BUG: Add the React import if it's missing. This is a bug in ui.shadcn.com.
-				await writeFile(
-					path,
-					contents.includes('import * as React from "react"')
-						? contents
-						: `import * as React from "react";\n${contents}`,
-				)
-			}
+			// BUG: Add the React import if it's missing. This is a bug in ui.shadcn.com.
+			await writeFile(
+				path,
+				contents.includes('import * as React from "react"')
+					? contents
+					: `import * as React from "react";\n${contents}`,
+			)
 		}),
 )
 

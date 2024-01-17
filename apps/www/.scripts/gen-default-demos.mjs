@@ -10,7 +10,9 @@ import { format } from "prettier"
 
 import prettierConfig from "../.prettierrc.cjs"
 
-const demoFiles = await globby("./ui/apps/www/content/docs/components/*.mdx")
+const demoFiles = await globby(
+	"../../ui/apps/www/content/docs/components/*.mdx",
+)
 
 const demosContent = await Promise.all(
 	demoFiles.map(async (demoFile) => {

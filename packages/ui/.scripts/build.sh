@@ -11,10 +11,10 @@ pnpm add --save-peer @radix-ui/react-icons@latest lucide-react@latest react@^18.
 pnpm add --save-dev @types/react @types/react-dom
 
 if [[ -z "${SKIP_UPDATE}" ]]; then
-  rm -rf src-gen
-  ./.scripts/update-components.mjs
+	rm -rf src-gen
+	./.scripts/update-components.mjs
 else
-  echo "__SCRIPTS__: Skipping update"
+	echo "__SCRIPTS__: Skipping update"
 fi
 
 pnpm tsup-node ./src-gen/**/* --target es2020 --format esm --clean --tsconfig tsconfig.json --out-dir ./dist/esm --minify --treeshake recommended

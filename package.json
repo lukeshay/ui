@@ -1,7 +1,7 @@
 {
 	"name": "@lshay/ui-root",
 	"scripts": {
-		"format": "prettier --write --check . '!packages/**' '!apps/**' && turbo run format",
+		"format": "prettier --write --check . '!packages/**' '!apps/**' '!ui/**' && turbo run format",
 		"lint": "turbo run lint",
 		"lint:fix": "turbo run lint:fix",
 		"build": "turbo run build",
