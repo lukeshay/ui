@@ -36,12 +36,15 @@ await writeFile(
 	`export const styles = ${JSON.stringify(styles, undefined, 2)};`,
 )
 
+// eslint-disable-next-line fp/no-loops
 for (const { name } of styles) {
+	// eslint-disable-next-line no-await-in-loop
 	await mkdir(`src-gen/components/${name}/ui`, {
 		force: true,
 		recursive: true,
 	})
 
+	// eslint-disable-next-line no-await-in-loop
 	await cp(
 		`../../ui/apps/www/registry/${name}/ui`,
 		`src-gen/components/${name}/ui`,
@@ -60,7 +63,7 @@ await Promise.all(
 			const contentsBuffer = await readFile(path)
 			const contents = contentsBuffer
 				.toString("utf8")
-				// eslint-disable-next-line unicorn/prefer-string-replace-all
+				// eslint-disable-next-line unicorn/prefer-string-replace-all,prefer-named-capture-group,regexp/no-unused-capturing-group
 				.replace(/@\/registry\/(default|new-york)\/ui/gu, ".")
 
 			// BUG: Add the React import if it's missing. This is a bug in ui.shadcn.com.

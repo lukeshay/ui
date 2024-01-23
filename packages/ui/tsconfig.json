@@ -17,5 +17,5 @@
 		},
 		"noUncheckedIndexedAccess": true
 	},
-	"include": ["src-gen", ".scripts/*", "eslint.config.js", ".prettierrc.cjs"]
+	"include": ["src-gen", ".scripts/**/*", "eslint.config.js", ".prettierrc.cjs"]
 }
