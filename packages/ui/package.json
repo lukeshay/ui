@@ -1,6 +1,6 @@
 {
 	"name": "@lshay/ui",
-	"version": "0.1.30",
+	"version": "0.1.31",
 	"description": "Published version of @shadcn/ui",
 	"repository": {
 		"url": "https://github.com/lukeshay/ui",
@@ -43,9 +43,9 @@
 		"@types/react-dom": "^18.2.7",
 		"eslint": "^8.46.0",
 		"globby": "^13.2.2",
-		"lucide-react": "^0.344.0",
+		"lucide-react": "^0.354.0",
 		"prettier": "^3.1.0",
-		"react": "^18.0.0",
+		"react": "^18.2.0",
 		"react-dom": "^18.0.0",
 		"semver": "^7.5.4",
 		"tailwindcss": "^3.0.0",
@@ -87,6 +87,7 @@
 		"cmdk": "^0.2.1",
 		"date-fns": "^2.30.0",
 		"embla-carousel-react": "8.0.0-rc15",
+		"input-otp": "^1.0.1",
 		"next-themes": "^0.2.1",
 		"react-day-picker": "^8.10.0",
 		"react-hook-form": "^7.45.2",
@@ -98,7 +99,7 @@
 	},
 	"peerDependencies": {
 		"@radix-ui/react-icons": "^1.3.0",
-		"lucide-react": "^0.344.0",
+		"lucide-react": "^0.354.0",
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0",
 		"tailwindcss": "^3.0.0"
@@ -143,6 +144,11 @@
 			"import": "./dist/esm/components/new-york/ui/badge.mjs",
 			"require": "./dist/cjs/components/new-york/ui/badge.js",
 			"types": "./dist/types/components/new-york/ui/badge.d.ts"
+		},
+		"./components/new-york/breadcrumb": {
+			"import": "./dist/esm/components/new-york/ui/breadcrumb.mjs",
+			"require": "./dist/cjs/components/new-york/ui/breadcrumb.js",
+			"types": "./dist/types/components/new-york/ui/breadcrumb.d.ts"
 		},
 		"./components/new-york/button": {
 			"import": "./dist/esm/components/new-york/ui/button.mjs",
@@ -208,6 +214,11 @@
 			"import": "./dist/esm/components/new-york/ui/hover-card.mjs",
 			"require": "./dist/cjs/components/new-york/ui/hover-card.js",
 			"types": "./dist/types/components/new-york/ui/hover-card.d.ts"
+		},
+		"./components/new-york/input-otp": {
+			"import": "./dist/esm/components/new-york/ui/input-otp.mjs",
+			"require": "./dist/cjs/components/new-york/ui/input-otp.js",
+			"types": "./dist/types/components/new-york/ui/input-otp.d.ts"
 		},
 		"./components/new-york/input": {
 			"import": "./dist/esm/components/new-york/ui/input.mjs",
@@ -369,6 +380,11 @@
 			"require": "./dist/cjs/components/default/ui/badge.js",
 			"types": "./dist/types/components/default/ui/badge.d.ts"
 		},
+		"./components/default/breadcrumb": {
+			"import": "./dist/esm/components/default/ui/breadcrumb.mjs",
+			"require": "./dist/cjs/components/default/ui/breadcrumb.js",
+			"types": "./dist/types/components/default/ui/breadcrumb.d.ts"
+		},
 		"./components/default/button": {
 			"import": "./dist/esm/components/default/ui/button.mjs",
 			"require": "./dist/cjs/components/default/ui/button.js",
@@ -433,6 +449,11 @@
 			"import": "./dist/esm/components/default/ui/hover-card.mjs",
 			"require": "./dist/cjs/components/default/ui/hover-card.js",
 			"types": "./dist/types/components/default/ui/hover-card.d.ts"
+		},
+		"./components/default/input-otp": {
+			"import": "./dist/esm/components/default/ui/input-otp.mjs",
+			"require": "./dist/cjs/components/default/ui/input-otp.js",
+			"types": "./dist/types/components/default/ui/input-otp.d.ts"
 		},
 		"./components/default/input": {
 			"import": "./dist/esm/components/default/ui/input.mjs",
@@ -591,6 +612,9 @@
 			"components/new-york/badge": [
 				"dist/types/components/new-york/ui/badge.d.ts"
 			],
+			"components/new-york/breadcrumb": [
+				"dist/types/components/new-york/ui/breadcrumb.d.ts"
+			],
 			"components/new-york/button": [
 				"dist/types/components/new-york/ui/button.d.ts"
 			],
@@ -629,6 +653,9 @@
 			],
 			"components/new-york/hover-card": [
 				"dist/types/components/new-york/ui/hover-card.d.ts"
+			],
+			"components/new-york/input-otp": [
+				"dist/types/components/new-york/ui/input-otp.d.ts"
 			],
 			"components/new-york/input": [
 				"dist/types/components/new-york/ui/input.d.ts"
@@ -726,6 +753,9 @@
 			"components/default/badge": [
 				"dist/types/components/default/ui/badge.d.ts"
 			],
+			"components/default/breadcrumb": [
+				"dist/types/components/default/ui/breadcrumb.d.ts"
+			],
 			"components/default/button": [
 				"dist/types/components/default/ui/button.d.ts"
 			],
@@ -764,6 +794,9 @@
 			],
 			"components/default/hover-card": [
 				"dist/types/components/default/ui/hover-card.d.ts"
+			],
+			"components/default/input-otp": [
+				"dist/types/components/default/ui/input-otp.d.ts"
 			],
 			"components/default/input": [
 				"dist/types/components/default/ui/input.d.ts"
